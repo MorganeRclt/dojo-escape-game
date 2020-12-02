@@ -37,3 +37,34 @@ export class MoveAction extends Action {
     })
   }
 }
+
+/**
+   * Add an item to the inventory when the player find it
+   */
+export class GetItemsAction extends Action {
+  
+  /**
+   * 
+   * @param {Object} actionConfig 
+   * @param {Item} item
+   * @param {Inventory} inventory 
+   */
+  constructor(actionConfig, item, inventory) {
+    super({
+      ...actionConfig,
+      callback: () => {
+        inventory.addItem(item)
+        say(`Add ${item.name} to the inventory`)
+        return actionConfig.callback()
+      }
+    })
+  }
+}
+
+export class ResolveCodeAction extends Action {
+
+  constructor(actionConfig, code) {
+    super({...actionConfig})
+    this.code = code
+  }
+}

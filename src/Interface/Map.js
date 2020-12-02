@@ -3,7 +3,7 @@ import { Player } from '../Game/Player'
 import { World } from '../Game/World'
 
 const canvasId = 'map'
-const scaling = 150
+const scaling = 100
 const playerSize = 1 / 10
 
 const mapCanvas = document.getElementById(canvasId)
@@ -14,12 +14,71 @@ const mapContext = mapCanvas.getContext('2d')
  */
 export const drawRoom = (room) => {
   mapContext.fillStyle = room.color
+  if (room.isHead) {
+    drawHead(room)
+  } else if (room.isTail) {
+    drawTail(room)
+  } else {
+    drawRect(room)
+  }
+}
+
+export const drawRect = (room) => {
   mapContext.fillRect(
     room.xPos * scaling,
     room.yPos * scaling,
     room.width * scaling,
     room.height * scaling
   )
+}
+
+export const drawHead = (room) => {
+  mapContext.beginPath()
+  mapContext.moveTo(
+    (room.xPos + 0.5) * scaling,
+    room.yPos * scaling
+  )
+  mapContext.lineTo(
+    (room.xPos + 1) * scaling,
+    room.yPos * scaling
+  )
+  mapContext.lineTo(
+    (room.xPos + 1) * scaling,
+    (room.yPos + 1) * scaling
+  )
+  mapContext.lineTo(
+    (room.xPos + 0.5) * scaling,
+    (room.yPos + 1) * scaling
+  )
+  mapContext.bezierCurveTo(
+    (room.xPos - 0.1) * scaling, (room.yPos + 1) * scaling,
+    (room.xPos - 0.1) * scaling, room.yPos * scaling,
+    (room.xPos + 0.5) * scaling, room.yPos * scaling
+  )
+  mapContext.fill()
+}
+
+export const drawTail = (room) => {
+  mapContext.beginPath()
+  mapContext.moveTo(
+    room.xPos * scaling,
+    room.yPos * scaling
+  )
+  mapContext.lineTo(
+    (room.xPos + 0.5) * scaling,
+    room.yPos * scaling,
+  )
+  mapContext.bezierCurveTo(
+    (room.xPos + 1.1) * scaling, room.yPos * scaling,
+    (room.xPos + 1.1) * scaling, (room.yPos + 1) * scaling,
+    (room.xPos + 0.5) * scaling, (room.yPos + 1) * scaling
+  )
+  mapContext.lineTo(
+    room.xPos * scaling,
+    (room.yPos + 1) * scaling
+  )
+  mapContext.closePath()
+  mapContext.fill()
 }
 
 /**

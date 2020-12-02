@@ -10,23 +10,51 @@ body {
   text-align: center;
 }
 
-.interface {
+.interface-move {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.interface-enigma {
   display: flex;
   width: 100%;
   justify-content: center;
   flex-direction: row;
   align-items: flex-start;
 }
-.primary-container {
+
+/* .primary-container {
   word-wrap: normal;
   width: 400px;
-}
+} */
 
 .secondary-container {
+  border: 0.1rem solid white;
   margin-top: 11rem;
   margin-left: 4rem;
   text-align: left;
-  flex: 1 0 50%;
+  flex-grow: 1;
+  /* flex: 1 0 30%; */
+}
+
+.tertiary-container {
+  border: 0.1rem solid white;
+  margin-top: 11rem;
+  margin-left: 4rem;
+  text-align: left;
+  flex-grow: 1;
+  /* flex: 1 0 20%; */
+}
+
+.fourth-container {
+  border: 0.1rem solid white;
+  margin-top: 11rem;
+  margin-left: 4rem;
+  text-align: left;
+  flex-grow: 2;
 }
 
 .actions {
@@ -57,13 +85,51 @@ body {
 .action-button + .action-button {
   margin-top: 1rem;
 }
+
+.item-button {
+  padding: 0.35rem 1.2rem;
+  border: 0.1rem solid white;
+  margin: 0 0.3rem 0.3rem 0;
+  height: 4em;
+  width: 4em;
+  border-radius: 0.12rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  transition: all 0.3s;
+  background-color: transparent;
+}
+
+.item-button-used {
+  padding: 0.35rem 1.2rem;
+  border: 0.1rem solid grey;
+  margin: 0 0.3rem 0.3rem 0;
+  height: 4em;
+  width: 4em;
+  border-radius: 0.12rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  transition: all 0.3s;
+  background-color: grey;
+}
+
 #map {
-  border: 1px solid white;
+  /* border: 1px solid white; */
+  margin: 1rem;
 }
 
 .title {
-  font-size: 3rem;
-  margin: 4rem;
+  font-size: 2rem;
+  width: 700px;
+  margin: 2rem 1rem 1rem 1rem;
+  padding: 0;
 }
 
 .speak {

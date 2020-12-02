@@ -1,7 +1,10 @@
 import { Player } from './Player'
 import { Room } from './Room'
+import { Item } from './Item'
+import { Inventory } from './Inventory'
 import { drawRoom, drawPlayer } from '../Interface/Map'
-import { Action, MoveAction } from './Action'
+import { drawItem, clearInventory, drawUsedItem } from '../Interface/Inventory'
+import { Action, MoveAction, GetItemsAction, ResolveCodeAction } from './Action'
 import { clearActions, addEnabledActions } from '../Interface/Action'
 
 export class World {
@@ -16,9 +19,20 @@ export class World {
   actions = []
 
   /**
+   * @type {MoveAction[]}
+   */
+  moveActions = []
+
+  /**
    * @type {Player | undefined}
    */
   player = undefined
+
+  /**
+   * Inventory
+   * @type {Inventory}
+   */
+  inventory = new Inventory()
 
   constructor(name) {
     this.name = name
@@ -42,8 +56,8 @@ export class World {
   /**
    * @param {Object} roomConfiguration - this is the room configuration
    */
-  createRoom(roomConfiguration) {
-    const room = new Room(roomConfiguration)
+  createRoom(roomConfiguration, items, forwardAction, backAction) {
+    const room = new Room(roomConfiguration, items)
     this.rooms.push(room)
     drawRoom(room)
     return room
@@ -88,7 +102,37 @@ export class World {
       this.player,
       wantedRoom
     )
+    this.moveActions.push(action)
+    return action
+  }
+
+  createGetItemsAction(actionConfig, item) {
+    const action = new GetItemsAction(
+      {
+        ...actionConfig,
+        world: this,
+        callback: this.wrapCallbackForAutomaticActionsDisplay(
+          actionConfig.callback
+        ),
+      },
+      item,
+      this.inventory,
+    )
     this.actions.push(action)
+    return action
+  }
+
+  createResolveCodeAction(actionConfig, code) {
+    const action = new ResolveCodeAction(
+      {
+        ...actionConfig,
+        world: this,
+        callback: this.wrapCallbackForAutomaticActionsDisplay(
+          actionConfig.callback
+        )
+      },
+      code
+    )
     return action
   }
 
@@ -107,5 +151,27 @@ export class World {
     this.player = player
     drawPlayer(player)
     return player
+  }
+
+  createInventory() {
+    return this.inventory
+  }
+
+  updateInventory() {
+    clearInventory()
+    this.inventory.items.forEach((item) => {
+      if (this.inventory.hasItemBeenUsed(item.id)) {
+        drawUsedItem(item)
+      } else {
+        drawItem(item)
+      }
+    })
+    return this.inventory
+  }
+
+  createInitialItems() {
+    const initial_item = new Item('key1', 'old key')
+    this.inventory.addItem(initial_item)
+    return initial_item
   }
 }

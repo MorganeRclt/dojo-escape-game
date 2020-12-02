@@ -4,29 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Escape game</title>
-    <link href="./assets/sanitize.css" rel="stylesheet" />
+    <link href="./assets/sanitize.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <div class="app-container">
-      <div class="interface">
-        <div class="primary-container">
-          <h1 class="title">Escape game</h1>
-
-          <canvas id="map" height="300" width="300"
-            >If you see this you need a compatible browser, try Firefox,
-            Chrome</canvas
-          >
-          <p class="speak" id="text"></p>
-        </div>
+      
+      <div class="interface-move">
+          <h1 class="title">Escape game : the treasure of President Coolidge</h1>
+          <div class="primary-container">
+            <button class="move-button" id="move-back-button">Back</button>
+            <canvas id="map" height="100" width="400"
+              >If you see this you need a compatible browser, try Firefox,
+              Chrome</canvas
+            >
+            <button class="move-button" id="move-forward-button">Forward</button>
+          </div>
+      </div>
+      <div class="interface-enigma">
         <div class="secondary-container">
           <h2>Actions</h2>
           <div class="actions" id="actions"></div>
+        </div>
+        <div class="tertiary-container">
+          <p class="speak" id="text"></p>
+          <div class="actions-resolve" id="actions-resolve"></div>
+        </div>
+        <div class="fourth-container">
+          <h2>Inventaire</h2>
+          <div class="inventory" id="inventory"></div>
         </div>
       </div>
     </div>
 
     <script type="module" src="./index.js"></script>
-    <link href="./index.css" rel="stylesheet" />
+    <link href="./index.css" rel="stylesheet"/>
   </body>
 </html>
