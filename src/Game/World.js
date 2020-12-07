@@ -4,8 +4,8 @@ import { Item } from './Item'
 import { Inventory } from './Inventory'
 import { drawRoom, drawPlayer } from '../Interface/Map'
 import { drawItem, clearInventory, drawUsedItem } from '../Interface/Inventory'
-import { Action, MoveAction, GetItemsAction, ResolveCodeAction } from './Action'
-import { clearActions, addEnabledActions } from '../Interface/Action'
+import { Action, MoveAction, GetItemsAction, ResolveCodeAction, InspectAction } from './Action'
+import { clearActions, clearResolveActions, addEnabledActions, clearZoom } from '../Interface/Action'
 
 export class World {
   /**
@@ -17,6 +17,16 @@ export class World {
    * @type {Action[]}
    */
   actions = []
+
+  /**
+   * @type {InspectAction[]}
+   */
+  actionsInspect = []
+
+  /**
+   * @type {ResolveCodeAction[]}
+   */
+  actionsResolve = []
 
   /**
    * @type {MoveAction[]}
@@ -45,6 +55,7 @@ export class World {
   wrapCallbackForAutomaticActionsDisplay(callback) {
     return () => {
       clearActions()
+      clearZoom()
       return (callback ? callback() : Promise.resolve(null))
         .then(() => {
           addEnabledActions(this)
@@ -122,7 +133,7 @@ export class World {
     return action
   }
 
-  createResolveCodeAction(actionConfig, code) {
+  createResolveRoomCodeAction(actionConfig, code) {
     const action = new ResolveCodeAction(
       {
         ...actionConfig,
@@ -133,6 +144,40 @@ export class World {
       },
       code
     )
+    return action
+  }
+
+  createResolveCodeAction(actionConfig, code, elementId, elementName, item) {
+    const action = new ResolveCodeAction(
+      {
+        ...actionConfig,
+        world: this,
+        callback: this.wrapCallbackForAutomaticActionsDisplay(
+          actionConfig.callback
+        )
+      },
+      code,
+      elementId,
+      elementName,
+      item,
+      this.inventory
+    )
+    this.actionsResolve.push(action)
+    return action
+  }
+
+  createInspectAction(actionConfig, idInspect) {
+    const action = new InspectAction(
+      {
+        ...actionConfig,
+        world: this,
+        callback: this.wrapCallbackForAutomaticActionsDisplay(
+          actionConfig.callback
+        )
+      },
+      idInspect
+    )
+    this.actionsInspect.push(action)
     return action
   }
 

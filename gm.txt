@@ -1,7 +1,10 @@
-Items:
+ITEMS
+
+ROOM1
 - mapr1 : Navigation map to resolve code door between room 1 and 2
+- symbr1 : Symbols on the wall
 - wallr2 : Symbols on the wall of room2, to resolve code door between room 2 and 3
 - coder3 : Code on a paper, to resolve code door between room 3 and 4
-- key1r2 : Key to open final door, find in room2 container
-- key2r3 : Key to open final door, find in room3 under the bar
-- key3r4 : Key to open final door, find in room4 into the drawer
+- key1r2 : Old Key to open final door, find in room2 container
+- key2r3 : Big Key to open final door, find in room3 under the bar
+- key3r4 : Tiny Key to open final door, find in room4 into the drawer

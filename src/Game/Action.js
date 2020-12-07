@@ -61,10 +61,36 @@ export class GetItemsAction extends Action {
   }
 }
 
+/**
+ * Resolve code and get an item
+ */
 export class ResolveCodeAction extends Action {
 
-  constructor(actionConfig, code) {
-    super({...actionConfig})
+  constructor(actionConfig, code, elementId = "door", elementName = "door", item = null, inventory = null) {
+    if (item !== null) {
+      super({
+        ...actionConfig,
+        callback: () => {
+          inventory.addItem(item)
+          say(`The ${elementName} is open ! Add ${item.name} to the inventory`)
+          return actionConfig.callback()
+        }
+      })
+    } else {
+      super({...actionConfig})
+    }
     this.code = code
+    this.item = item
+    this.inventory = inventory
+    this.elementId = elementId
+    this.elementName = elementName
+  }
+}
+
+export class InspectAction extends Action {
+
+  constructor(actionConfig, idInspect) {
+    super({...actionConfig})
+    this.idInspect = idInspect
   }
 }

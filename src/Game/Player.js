@@ -14,6 +14,7 @@ export class Player {
   constructor(room, name) {
     this.currentRoom = room
     this.name = name
+    this.roomElementDiscovered = []
   }
 
   /**
@@ -24,5 +25,19 @@ export class Player {
     erasePlayer(this)
     this.currentRoom = wantedRoom
     drawPlayer(this)
+  }
+
+  doDiscover(roomElement) {
+    this.roomElementDiscovered.push(roomElement)
+  }
+
+  hasDiscovered(roomElement) {
+    console.log(this.roomElementDiscovered)
+    for (var i in this.roomElementDiscovered) {
+      if (this.roomElementDiscovered[i] === roomElement) {
+        return true
+      }
+    }
+    return false
   }
 }

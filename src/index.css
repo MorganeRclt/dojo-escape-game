@@ -18,6 +18,14 @@ body {
   align-items: center;
 }
 
+.interface-speak {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .interface-enigma {
   display: flex;
   width: 100%;
@@ -31,9 +39,10 @@ body {
   width: 400px;
 } */
 
+
 .secondary-container {
   border: 0.1rem solid white;
-  margin-top: 11rem;
+  margin-top: 4rem;
   margin-left: 4rem;
   text-align: left;
   flex-grow: 1;
@@ -42,7 +51,7 @@ body {
 
 .tertiary-container {
   border: 0.1rem solid white;
-  margin-top: 11rem;
+  margin-top: 4rem;
   margin-left: 4rem;
   text-align: left;
   flex-grow: 1;
@@ -51,7 +60,7 @@ body {
 
 .fourth-container {
   border: 0.1rem solid white;
-  margin-top: 11rem;
+  margin-top: 4rem;
   margin-left: 4rem;
   text-align: left;
   flex-grow: 2;
@@ -95,12 +104,73 @@ body {
   border-radius: 0.12rem;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: sans-serif;
-  font-weight: 300;
-  color: white;
   text-align: center;
   transition: all 0.3s;
-  background-color: transparent;
+  width: 100px;
+  height: 100px;
+}
+
+.item-button#mapr1 {
+  background: url("assets/icon-map-70.png");
+  background-size: contain;
+}
+.item-button#key1r2 {
+  background: url("assets/icon-oldkey-100.png");
+  background-size: contain;
+}
+.item-button#key2r3 {
+  background: url("assets/icon-bigkey-100.png");
+  background-size: contain;
+}
+.item-button#key3r4 {
+  background: url("assets/icon-tinykey-100.png");
+  background-size: contain;
+}
+.item-button#symbr1 {
+  background: url("assets/symbr1.png");
+  background-size: contain;
+  background-color: white;
+}
+
+
+.item-zoom {
+  width: 500px;
+  height: 500px;
+}
+
+.item-zoom#mapr1-zoom {
+  background: url('assets/zoom-map.png');
+  background-size: contain;
+}
+.item-zoom#key1r2-zoom {
+  background: url("assets/icon-oldkey-100.png");
+  background-size: contain;
+}
+.item-zoom#key2r3-zoom {
+  background: url("assets/icon-bigkey-100.png");
+  background-size: contain;
+}
+.item-zoom#key3r4-zoom {
+  background: url("assets/icon-tinykey-100.png");
+  background-size: contain;
+}
+.item-zoom#rudderr1-zoom {
+  background: url("assets/rudderr1.png");
+  background-size: contain;
+}
+.item-zoom#circler1-zoom {
+  background: url("assets/circler1.png");
+  background-size: contain;
+}
+.item-zoom#symbr1-zoom {
+  background: url("assets/symbr1.png");
+  background-size: contain;
+  background-color: white;
+}
+.item-zoom#circlesolr1-zoom {
+  background: url("assets/circlesolr1.png");
+  background-size: contain;
+  background-color: white;
 }
 
 .item-button-used {

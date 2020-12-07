@@ -5,11 +5,13 @@ export class Item {
      * @param {string} id - the id of the item
      * @param {string} name - the name of the item 
      */
-    constructor(id, name) {
+    constructor(id, name, imagePath, imageZoomPath) {
         this.name = name
         this.id = id
         this.selected = false
         this.hasBeenUsed = false
+        this.imagePath = imagePath
+        this.imageZoomPath = imageZoomPath
     }
 
     selectItem() {

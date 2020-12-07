@@ -6,6 +6,9 @@ const moveBackId = 'move-back-button'
 const moveBackElement = document.getElementById(moveBackId)
 const resolveId = 'actions-resolve'
 const resolveElement = document.getElementById(resolveId)
+const zoomInventoryId = "zoom-inventory"
+const zoomInventoryElement = document.getElementById(zoomInventoryId)
+
 import { Action } from '../Game/Action'
 import { World } from '../Game/World'
 import { say } from './Text'
@@ -25,15 +28,20 @@ export const addAction = ({ text, callback, identifier }) => {
   actionsElement.append(actionElement)
 }
 
-export const addResolveCodeAction = (currentRoom) => {
+export const addResolveRoomCodeAction = (currentRoom) => {
   if (currentRoom.resolveAction !== null && currentRoom.resolveAction.isEnabled()) {
+    const resolveCodeElement = document.createElement('div')
+    Object.assign(resolveCodeElement, {
+      id: 'resolve-room'
+    })
+
     const labelCodeElement = document.createElement('label')
     Object.assign(labelCodeElement, {
       classList: ['code-label'],
       id: 'code-label',
       innerHTML: "Enter a code to unlock the door"
     })
-    resolveElement.append(labelCodeElement)
+    resolveCodeElement.append(labelCodeElement)
 
     const enterCodeElement = document.createElement('input')
     Object.assign(enterCodeElement, {
@@ -41,29 +49,101 @@ export const addResolveCodeAction = (currentRoom) => {
       classList: ['code-input'],
       id: 'code-input'
     })
-    resolveElement.append(enterCodeElement)
+    resolveCodeElement.append(enterCodeElement)
 
     const submitCodeElement = document.createElement('button')
     Object.assign(submitCodeElement, {
       classList: ['action-button'],
       onclick: () => {
         const codeEntered = document.getElementById('code-input').value
+        say('Try the code...')
         if (codeEntered === currentRoom.resolveAction.code) {
-          say('Try the code...')
           setTimeout(() => {
             say('The door is open !')
             currentRoom.nextRoom.updateColor(),
             addMoveForwardAction(currentRoom)
-            clearResolveAction()
+            document.getElementById('resolve-room').innerHTML = ''
           }, 2000)
         } else {
-          console.log("wrong code")
+          setTimeout(() => {
+            say('Wrong code ! Try again')
+            document.getElementById('code-input').value = ''
+          }, 2000)
         }
       },
       innerHTML: "Submit"
     })
-    resolveElement.append(submitCodeElement)
+    resolveCodeElement.append(submitCodeElement)
+
+    resolveElement.append(resolveCodeElement)
   }
+}
+
+export const addInspectAction = (action) => {
+  const actionElement = document.createElement('button')
+  Object.assign(actionElement, {
+    classList: ['action-button'],
+    onclick: () => {
+      clearZoom()
+      const zoomElement = document.createElement('div')
+      Object.assign(zoomElement, {
+          classList: ['item-zoom'],
+          id: action.idInspect + '-zoom'
+      })
+      zoomInventoryElement.append(zoomElement)
+    },
+    id: action.idInspect + '-zoom',
+    innerHTML: action.text
+  })
+  actionsElement.append(actionElement)
+}
+
+export const addResolveCodeAction = (action) => {
+  const resolveCodeElement = document.createElement('div')
+  Object.assign(resolveCodeElement, {
+    id: action.itemId
+  })
+
+  const labelCodeElement = document.createElement('label')
+  Object.assign(labelCodeElement, {
+    classList: ['code-label'],
+    id: 'code-label-' + action.itemId,
+    innerHTML: "Enter a code to unlock the " + action.elementName
+  })
+  resolveCodeElement.append(labelCodeElement)
+
+  const enterCodeElement = document.createElement('input')
+  Object.assign(enterCodeElement, {
+    type: 'text',
+    classList: ['code-input'],
+    id: 'code-input-' + action.itemId
+  })
+  resolveCodeElement.append(enterCodeElement)
+
+  const submitCodeElement = document.createElement('button')
+  Object.assign(submitCodeElement, {
+    classList: ['action-button'],
+    onclick: () => {
+      const codeEntered = document.getElementById('code-input-' + action.itemId).value
+      say('Try the code...')
+      if (codeEntered === action.code) {
+        setTimeout(() => {
+          say(`The ${action.elementName} is open !`)
+          document.getElementById(action.itemId).innerHTML = ''
+          action.callback()
+        }, 2000)
+      } else {
+        setTimeout(() => {
+          say('Wrong code ! Try again')
+          document.getElementById('code-input-' + action.itemId).value = ''
+        }, 2000)
+      }
+    },
+    innerHTML: "Submit"
+  })
+  resolveCodeElement.append(submitCodeElement)
+
+  resolveElement.append(resolveCodeElement)
 }
 
 export const addMoveForwardAction = (currentRoom) => {
@@ -88,12 +168,12 @@ export const addMoveBackAction = (currentRoom) => {
  */
 export const addEnabledActions = (world) => {
   world.actions.forEach((action) => action.isEnabled() && addAction(action))
+  world.actionsInspect.forEach((action) => action.isEnabled() && addInspectAction(action))
+  world.actionsResolve.forEach((action) => action.isEnabled() && addResolveCodeAction(action))
   const currentRoom = world.player.currentRoom
   addMoveForwardAction(currentRoom)
   addMoveBackAction(currentRoom)
-  if (resolveElement.innerHTML === '') {
-    addResolveCodeAction(currentRoom)
-  }
+  addResolveRoomCodeAction(currentRoom)
 }
 
 /**
@@ -110,8 +190,12 @@ export const removeAction = ({ identifier }) => {
  */
 export const clearActions = () => {
   actionsElement.innerHTML = ''
+  clearResolveActions()
 }
 
-export const clearResolveAction = () => {
+export const clearResolveActions = () => {
   resolveElement.innerHTML = ''
 }
+ export const clearZoom = () => {
+   zoomInventoryElement.innerHTML = ''
+ }
