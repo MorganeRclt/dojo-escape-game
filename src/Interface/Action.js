@@ -108,7 +108,7 @@ export const addResolveCodeAction = (action) => {
   Object.assign(labelCodeElement, {
     classList: ['code-label'],
     id: 'code-label-' + action.itemId,
-    innerHTML: "Enter a code to unlock the " + action.elementName
+    innerHTML: action.text
   })
   resolveCodeElement.append(labelCodeElement)
 

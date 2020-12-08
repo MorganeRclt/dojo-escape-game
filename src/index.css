@@ -131,6 +131,22 @@ body {
   background-size: contain;
   background-color: white;
 }
+.item-button#bottle1r3 {
+  background: url("assets/icon-bottle1r3.png");
+  background-size: contain;
+}
+.item-button#bottle2r3 {
+  background: url("assets/icon-bottle2r3.png");
+  background-size: contain;
+}
+.item-button#bottle3r3 {
+  background: url("assets/icon-bottle3r3.png");
+  background-size: contain;
+}
+.item-button#bottle4r3 {
+  background: url("assets/icon-bottle4r3.png");
+  background-size: contain;
+}
 
 
 .item-zoom {
@@ -171,6 +187,44 @@ body {
   background: url("assets/circlesolr1.png");
   background-size: contain;
   background-color: white;
+}
+.item-zoom#symbr2-zoom {
+  background: url("assets/symbr2.png");
+  background-size: contain;
+  background-color: white;
+}
+.item-zoom#symbsolr2-zoom {
+  background: url("assets/symbsolr2.png");
+  background-size: contain;
+  background-color: white;
+}
+.item-zoom#bottle1r3-zoom {
+  background: url("assets/bottle1r3.png");
+  background-size: contain;
+}
+.item-zoom#bottle2r3-zoom {
+  background: url("assets/bottle2r3.png");
+  background-size: contain;
+}
+.item-zoom#bottle3r3-zoom {
+  background: url("assets/bottle3r3.png");
+  background-size: contain;
+}
+.item-zoom#bottle4r3-zoom {
+  background: url("assets/bottle4r3.png");
+  background-size: contain;
+}
+.item-zoom#morse1r3-zoom {
+  background: url("assets/morse1r3.png");
+  background-size: contain;
+}
+.item-zoom#morse2r3-zoom {
+  background: url("assets/morse2r3.png");
+  background-size: contain;
+}
+.item-zoom#morse3r3-zoom {
+  background: url("assets/morse3r3.png");
+  background-size: contain;
 }
 
 .item-button-used {

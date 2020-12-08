@@ -112,6 +112,10 @@ const main = () => {
   const key1r2 = new Item('key1r2', "Old key", "", "")
   const key2r3 = new Item('key2r3', "Big key", "", "")
   const key3r4 = new Item('key3r4', 'Tiny key', "", "")
+  const bottle1r3 = new Item('bottle1r3', 'Bottle', "", "")
+  const bottle2r3 = new Item('bottle2r3', 'Bottle', "", "")
+  const bottle3r3 = new Item('bottle3r3', 'Bottle', "", "")
+  const bottle4r3 = new Item('bottle4r3', 'Bottle', "", "")
 
   /********************************************** CREATE GETITEMSACTIONS ***************************************/
 
@@ -150,77 +154,77 @@ const main = () => {
     symbr1
   )
 
-  /******** ROOM 2 **********/
-  world.createGetItemsAction(
-    {
-      text: "Look at the wall",
-      callback: () =>
-        new Promise((resolve) => {
-          say(`${player.name} looks carrefully at the wall...`)
-          setTimeout(() => {
-            say(`${player.name} found strange symbols on the wall, he wrote it into the ivnentary`)
-            inventory = world.updateInventory()
-            resolve()
-          }, 3000)
-        }),
-      isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(wallr2.id)
-    },
-    wallr2
-  )
-
-  world.createGetItemsAction(
-    {
-      text: "Look into the container",
-      callback: () =>
-        new Promise((resolve) => {
-          say(`${player.name} looks into the container...`)
-          setTimeout(() => {
-            say(`${player.name} found an old key !`)
-            inventory = world.updateInventory()
-            resolve()
-          }, 3000)
-        }),
-      isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key1r2.id)
-    },
-   key1r2
-  )
-
   /******** ROOM 3 **********/
+
   world.createGetItemsAction(
     {
-      text: "Look into the trunk",
+      text: "Look under the sofa",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} looks carrefully into the trunk...`)
+          say(`${player.name} looks under the sofa...`)
           setTimeout(() => {
-            say(`${player.name} found a code into the trunk !`)
+            say(`${player.name} found a bottle (there's just enough left for a nightcap !)`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
         }),
-      isEnabled: () => player.currentRoom === room3 && !inventory.hasItem(coder3.id)
+      isEnabled: () => player.currentRoom === room3 && !inventory.hasItem(bottle1r3.id)
     },
-    coder3
+    bottle1r3
   )
 
   world.createGetItemsAction(
     {
-      text: "Look under the bar",
+      text: "Look under the counter",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} looks under the bar...`)
+          say(`${player.name} looks under the counter...`)
           setTimeout(() => {
-            say(`${player.name} found a big key !`)
+            say(`${player.name} found a full bottle !`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
         }),
-      isEnabled: () => player.currentRoom === room3 && !inventory.hasItem(key2r3.id)
+      isEnabled: () => player.currentRoom === room3 && !inventory.hasItem(bottle2r3.id)
     },
-   key2r3
+    bottle2r3
   )
 
-  /******** ROOM 3 **********/
+  world.createGetItemsAction(
+    {
+      text: "Look on the table",
+      callback: () =>
+        new Promise((resolve) => {
+          say(`${player.name} looks under the counter...`)
+          setTimeout(() => {
+            say(`${player.name} found an intact bottle in the middle of the glass !`)
+            inventory = world.updateInventory()
+            resolve()
+          }, 3000)
+        }),
+      isEnabled: () => player.currentRoom === room3 && !inventory.hasItem(bottle3r3.id)
+    },
+    bottle3r3
+  )
+
+  world.createGetItemsAction(
+    {
+      text: "Look at the bar shelf",
+      callback: () =>
+        new Promise((resolve) => {
+          say(`${player.name} looks int the bar shelf...`)
+          setTimeout(() => {
+            say(`${player.name} found a bottle !`)
+            inventory = world.updateInventory()
+            resolve()
+          }, 3000)
+        }),
+      isEnabled: () => player.currentRoom === room3 && !inventory.hasItem(bottle4r3.id)
+    },
+    bottle4r3
+  )
+
+  /******** ROOM 4 **********/
   world.createGetItemsAction(
     {
       text: "Search into the drawer",
@@ -239,6 +243,8 @@ const main = () => {
   )
 
  /********************************************** CREATE INSPECT ACTIONS ***************************************/
+  
+  /******** ROOM 1 **********/
   const inspectActionRubber = world.createInspectAction(
     {
       text: "Inspect the rudder",
@@ -246,7 +252,7 @@ const main = () => {
     },
     "rudderr1"
   )
-
+  1234
   world.createInspectAction(
     {
       text: "Inspect the captain's desk",
@@ -262,6 +268,57 @@ const main = () => {
     },
     "circlesolr1"
   )
+
+  /******** ROOM 2 **********/
+  world.createInspectAction(
+    {
+      text: "Inspect the wall",
+      isEnabled: () => player.currentRoom === room2 && room3.color === "black"
+    },
+    "symbr2"
+  )
+
+  world.createInspectAction(
+    {
+      text: "Inspect the door's lock",
+      isEnabled: () => player.currentRoom === room2 && room3.color === "black" && room2.userHaveFoundDoor
+    },
+    "symbsolr2"
+  )
+
+  world.createInspectAction(
+    {
+      text: "Inspect room's inventory",
+      isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key2r3.id)
+    },
+    //TODO
+  )
+
+  /******** ROOM 3 **********/
+  world.createInspectAction(
+    {
+      text: "Inspect the wall at your left",
+      isEnabled: () => player.currentRoom === room3 && room4.color === "black"
+    },
+    "morse1r3"
+  )
+
+  world.createInspectAction(
+    {
+      text: "Inspect the wall in front of you",
+      isEnabled: () => player.currentRoom === room3 && room4.color === "black"
+    },
+    "morse2r3"
+  )
+
+  world.createInspectAction(
+    {
+      text: "Inspect the wall at your right",
+      isEnabled: () => player.currentRoom === room3 && room4.color === "black"
+    },
+    "morse3r3"
+  )
+
 
  /********************************************** CREATE RESOLVE CODE ACTION ***************************************/
 
@@ -284,7 +341,7 @@ const main = () => {
 
   world.createResolveCodeAction(
     {
-      text: "Resolve code for trunk room1",
+      text: "Enter a code to unlock the trunk",
       callback: () =>
         new Promise((resolve) => {
           setTimeout(() => {
@@ -303,7 +360,7 @@ const main = () => {
   /******** ROOM 2 **********/
   const resolveRoom2 = world.createResolveRoomCodeAction(
     {
-      text: "Resolve code for foor Room2",
+      text: "Resolve code for Room2",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} enter the code...`)
@@ -314,7 +371,25 @@ const main = () => {
         }),
       isEnabled: () => player.currentRoom === room2 && room3.color === 'black' && room2.userHaveFoundDoor
     },
-    "1234"
+    "henrynelson"
+  )
+
+  world.createResolveCodeAction(
+    {
+      text: "Look in container number...",
+      callback: () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            inventory = world.updateInventory()
+            resolve()
+          }, 10)
+        }),
+      isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key2r3.id)
+    },
+    "1",
+    "containerr2",
+    "container",
+    key2r3
   )
 
   /******** ROOM 3 **********/
@@ -323,7 +398,7 @@ const main = () => {
       text: "Resolve code for foor Room3",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} enter the code...`)
+          say(`${player.name} enters the code...`)
           setTimeout(() => {
             say(`${player.name} code !`)
             resolve()
@@ -331,7 +406,25 @@ const main = () => {
         }),
       isEnabled: () => player.currentRoom === room3 && room4.color === 'black' && room3.userHaveFoundDoor
     },
-    "1234"
+    "1514"
+  )
+
+  world.createResolveCodeAction(
+    {
+      text: "Enter a code to unlock the register",
+      callback: () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          inventory = world.updateInventory()
+          resolve()
+        }, 10)
+      }),
+      isEnabled: () => player.currentRoom === room3 && player.hasDiscovered('registerr3') && !inventory.hasItem(key3r4.id)
+    },
+    "1942",
+    "registerr3",
+    "register",
+    key3r4
   )
 
   room1.addResolveAction(resolveRoom1)
@@ -423,6 +516,22 @@ const main = () => {
     }
   )
 
+  world.createAction(
+    {
+      text: "Look at the bar",
+      callback: () =>
+        new Promise((resolve) => {
+          say(`${player.name} look at the bar...`)
+          setTimeout(() => {
+            say(`${player.name} has found the register, it's locked by a code !`)
+            player.doDiscover('registerr3')
+            resolve()
+          }, 3000)
+      }),
+      isEnabled: () => player.currentRoom === room3 && !player.hasDiscovered('registerr3')
+    }
+  )
+
   /******** ROOM 4 **********/
   world.createAction(
     {
@@ -441,7 +550,8 @@ const main = () => {
   )
 
 /********************************************** GAME BEGIN ***************************************/
-
+  // room2.updateColor()
+  // room3.updateColor()
   setTimeout(() => {
     say(`${player.name} wakes up.`),
     addMoveForwardAction(
