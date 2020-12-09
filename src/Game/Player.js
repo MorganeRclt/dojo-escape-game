@@ -15,6 +15,7 @@ export class Player {
     this.currentRoom = room
     this.name = name
     this.roomElementDiscovered = []
+    this.exit = false
   }
 
   /**
@@ -39,5 +40,9 @@ export class Player {
       }
     }
     return false
+  }
+
+  doEscape() {
+    this.exit = true
   }
 }

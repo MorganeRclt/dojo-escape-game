@@ -147,6 +147,14 @@ body {
   background: url("assets/icon-bottle4r3.png");
   background-size: contain;
 }
+.item-button#scorer4 {
+  background: url("assets/icon-scorer4.png");
+  background-size: contain;
+}
+.item-button#pianosolr4 {
+  background: url("assets/icon-pianosolr4.png");
+  background-size: contain;
+}
 
 
 .item-zoom {
@@ -225,6 +233,15 @@ body {
 .item-zoom#morse3r3-zoom {
   background: url("assets/morse3r3.png");
   background-size: contain;
+}
+.item-zoom#scorer4-zoom {
+  background: url("assets/scorer4.png");
+  background-size: contain;
+}
+.item-zoom#pianosolr4-zoom {
+  background: url("assets/pianosolr4.png");
+  background-size: contain;
+  background-color: white;
 }
 
 .item-button-used {

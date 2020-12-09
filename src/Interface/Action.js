@@ -8,10 +8,13 @@ const resolveId = 'actions-resolve'
 const resolveElement = document.getElementById(resolveId)
 const zoomInventoryId = "zoom-inventory"
 const zoomInventoryElement = document.getElementById(zoomInventoryId)
+const exitId = "exit"
+const exitElement = document.getElementById(exitId)
 
 import { Action } from '../Game/Action'
 import { World } from '../Game/World'
 import { say } from './Text'
+import { clearInventory } from './Inventory'
 
 /**
  * Add an action to the interface
@@ -60,8 +63,12 @@ export const addResolveRoomCodeAction = (currentRoom) => {
         if (codeEntered === currentRoom.resolveAction.code) {
           setTimeout(() => {
             say('The door is open !')
-            currentRoom.nextRoom.updateColor(),
-            addMoveForwardAction(currentRoom)
+            if (currentRoom.nextRoom != null) {
+              currentRoom.nextRoom.updateColor(),
+              addMoveForwardAction(currentRoom)
+            } else {
+              addExit()
+            }
             document.getElementById('resolve-room').innerHTML = ''
           }, 2000)
         } else {
@@ -174,6 +181,22 @@ export const addEnabledActions = (world) => {
   addMoveForwardAction(currentRoom)
   addMoveBackAction(currentRoom)
   addResolveRoomCodeAction(currentRoom)
+}
+
+export const addExit = () => {
+  const exitButton = document.createElement("button")
+  Object.assign(exitButton, {
+    classList: ["exit-button"],
+    id: "exitButton",
+    onclick: () => {
+      console.log("Exit game")
+      clearActions()
+      clearZoom()
+      clearInventory()
+    },
+    innerHTML: "Escape the boat"
+  })
+  exitElement.append(exitButton)
 }
 
 /**
