@@ -206,6 +206,11 @@ body {
   background-size: contain;
   background-color: white;
 }
+.item-zoom#containerr2-zoom {
+  background: url("assets/containerr2.png");
+  background-size: contain;
+  background-color: white;  
+}
 .item-zoom#bottle1r3-zoom {
   background: url("assets/bottle1r3.png");
   background-size: contain;

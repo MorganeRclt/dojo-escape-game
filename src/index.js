@@ -107,8 +107,6 @@ const main = () => {
   /********* Create items **********/
   const mapr1 = new Item('mapr1', "Navigation map", "assets/icon-map.png", "")
   const symbr1 = new Item('symbr1', "American flag with symbols", "", "")
-  const wallr2 = new Item('wallr2', "Symbols on the wall", "", "")
-  const coder3 = new Item('coder3', "Paper with a code", "", "")
   const key1r2 = new Item('key1r2', "Old key", "", "")
   const key2r3 = new Item('key2r3', "Big key", "", "")
   const key3r4 = new Item('key3r4', 'Tiny key', "", "")
@@ -330,7 +328,7 @@ const main = () => {
       text: "Inspect room's inventory",
       isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key2r3.id)
     },
-    //TODO
+    "containerr2"
   )
 
   /******** ROOM 3 **********/
@@ -425,7 +423,7 @@ const main = () => {
         }),
       isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key2r3.id)
     },
-    "1",
+    "C6",
     "containerr2",
     "container",
     key2r3
