@@ -274,7 +274,7 @@ const main = () => {
           }, 3000)
         }),
       isEnabled: () => player.currentRoom === room4 && inventory.hasItem(key1r2.id) && inventory.hasItem(key2r3.id) 
-                        && inventory.hasItem(key3r4.id) && !inventory.hasItem(treasurer4)
+                        && inventory.hasItem(key3r4.id) && !inventory.hasItem(treasurer4.id)
     },
     treasurer4
   )
@@ -408,7 +408,7 @@ const main = () => {
         }),
       isEnabled: () => player.currentRoom === room2 && room3.color === 'black' && room2.userHaveFoundDoor
     },
-    "henrynelson"
+    "henry nelson"
   )
 
   world.createResolveCodeAction(
@@ -620,9 +620,9 @@ const main = () => {
   )
 
 /********************************************** GAME BEGIN ***************************************/
-  // room2.updateColor()
-  // room3.updateColor()
-  // room4.updateColor()
+  room2.updateColor()
+  room3.updateColor()
+  room4.updateColor()
   setTimeout(() => {
     say(`${player.name} wakes up.`),
     addMoveForwardAction(

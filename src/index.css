@@ -155,7 +155,10 @@ body {
   background: url("assets/icon-pianosolr4.png");
   background-size: contain;
 }
-
+.item-button#treasurer4 {
+  background: url("assets/icon-treasurer4.png");
+  background-size: contain;
+}
 
 .item-zoom {
   width: 500px;
@@ -247,6 +250,10 @@ body {
   background: url("assets/pianosolr4.png");
   background-size: contain;
   background-color: white;
+}
+.item-zoom#treasurer4-zoom {
+  background: url("assets/treasurer4.png");
+  background-size: contain;
 }
 
 .item-button-used {
