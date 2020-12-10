@@ -1,3 +1,4 @@
+//import "bootstrap"
 import { World } from './Game/World'
 import { say } from './Interface/Text'
 import { addAction, addMoveForwardAction, addMoveBackAction, addResolveRoomCodeAction, addInspectAction, addExit } from './Interface/Action'
@@ -408,7 +409,7 @@ const main = () => {
         }),
       isEnabled: () => player.currentRoom === room2 && room3.color === 'black' && room2.userHaveFoundDoor
     },
-    "henry nelson"
+    "henrynelson"
   )
 
   world.createResolveCodeAction(
@@ -620,9 +621,9 @@ const main = () => {
   )
 
 /********************************************** GAME BEGIN ***************************************/
-  room2.updateColor()
-  room3.updateColor()
-  room4.updateColor()
+  //room2.updateColor()
+  // room3.updateColor()
+  // room4.updateColor()
   setTimeout(() => {
     say(`${player.name} wakes up.`),
     addMoveForwardAction(
