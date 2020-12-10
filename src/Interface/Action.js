@@ -60,7 +60,7 @@ export const addResolveRoomCodeAction = (currentRoom) => {
       onclick: () => {
         const codeEntered = document.getElementById('code-input').value
         say('Try the code...')
-        if (codeEntered.toUpperCase() === currentRoom.resolveAction.code) {
+        if (codeEntered.toUpperCase() === currentRoom.resolveAction.code.toUpperCase()) {
           setTimeout(() => {
             say('The door is open !')
             if (currentRoom.nextRoom != null) {
@@ -133,7 +133,7 @@ export const addResolveCodeAction = (action) => {
     onclick: () => {
       const codeEntered = document.getElementById('code-input-' + action.itemId).value
       say('Try the code...')
-      if (codeEntered.toUpperCase() === action.code) {
+      if (codeEntered.toUpperCase() === action.code.toUpperCase()) {
         setTimeout(() => {
           say(`The ${action.elementName} is open !`)
           document.getElementById(action.itemId).innerHTML = ''
