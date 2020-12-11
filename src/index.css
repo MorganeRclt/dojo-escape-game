@@ -1,15 +1,50 @@
-/* @import "../node_modules/bootstrap/scss/bootstrap.scss"; */
+:root {
+  --color-background: grey;
+  --color-outside: grey;
+  --color-bubble: aqua;
+  --color-shadow: black;
+}
 
 body {
-  background-color: black;
+  background-color: var(--color-background);
   color: white;
 }
 
+
 .app-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#game {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  display: none;
+}
+
+.outside-game {
+  width: 50%;
+  height: 50rem;
+  position: absolute;
+  top: 50px;
+  left: 25%;
+  color: black;
+  background-color: var(--color-outside);
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 0px 5px var(--color-shadow);
+}
+
+#end-game {
+  display: none;
 }
 
 .interface-move {
@@ -43,29 +78,32 @@ body {
 
 
 .secondary-container {
-  border: 0.1rem solid white;
-  margin-top: 4rem;
-  margin-left: 4rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   text-align: left;
-  flex-grow: 1;
+  flex-basis: 30%;
+  /* flex-grow: 1; */
   /* flex: 1 0 30%; */
 }
 
 .tertiary-container {
-  border: 0.1rem solid white;
-  margin-top: 4rem;
-  margin-left: 4rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   text-align: left;
-  flex-grow: 1;
+  flex-basis: 30%;
+  /* flex-grow: 1; */
   /* flex: 1 0 20%; */
 }
 
 .fourth-container {
-  border: 0.1rem solid white;
-  margin-top: 4rem;
-  margin-left: 4rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   text-align: left;
-  flex-grow: 2;
+  flex-basis: 30%;
+  /* flex-grow: 2; */
 }
 
 .actions {
@@ -99,67 +137,83 @@ body {
 
 .item-button {
   padding: 0.35rem 1.2rem;
-  border: 0.1rem solid white;
-  margin: 0 0.3rem 0.3rem 0;
+  margin: 0.3rem 0.3rem 0.3rem 0.3rem;
   height: 4em;
   width: 4em;
-  border-radius: 0.12rem;
+  border: none;
+  border-radius: 50%;
   box-sizing: border-box;
   text-decoration: none;
   text-align: center;
   transition: all 0.3s;
   width: 100px;
   height: 100px;
+  box-shadow: 0px 0px 3px var(--color-shadow);
+}
+
+.item-button:hover {
+  box-shadow: 0px 0px 6px var(--color-shadow);
 }
 
 .item-button#mapr1 {
   background: url("assets/icon-map-70.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#key1r2 {
   background: url("assets/icon-oldkey-100.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#key2r3 {
   background: url("assets/icon-bigkey-100.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#key3r4 {
   background: url("assets/icon-tinykey-100.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#symbr1 {
   background: url("assets/symbr1.png");
   background-size: contain;
-  background-color: white;
+  background-color: var(--color-bubble);
 }
 .item-button#bottle1r3 {
   background: url("assets/icon-bottle1r3.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#bottle2r3 {
   background: url("assets/icon-bottle2r3.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#bottle3r3 {
   background: url("assets/icon-bottle3r3.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#bottle4r3 {
   background: url("assets/icon-bottle4r3.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#scorer4 {
   background: url("assets/icon-scorer4.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#pianosolr4 {
   background: url("assets/icon-pianosolr4.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 .item-button#treasurer4 {
   background: url("assets/icon-treasurer4.png");
   background-size: contain;
+  background-color: var(--color-bubble);
 }
 
 .item-zoom {
@@ -257,6 +311,10 @@ body {
   background: url("assets/treasurer4.png");
   background-size: contain;
 }
+.item-zoom#pianor3-zoom {
+  background: url("assets/pianor3.png");
+  background-size: contain;
+}
 
 .item-button-used {
   padding: 0.35rem 1.2rem;
@@ -290,6 +348,22 @@ body {
 .speak {
   font-size: 1.5rem;
   margin: 2rem;
+}
+
+.story {
+  margin: 4rem;
+}
+
+.arrows {
+  font-size:50px;
+  color: white;
+}
+
+.move-button {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
 }
 
 /* mobile overrides */

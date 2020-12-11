@@ -9,37 +9,66 @@
   <body>
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <div class="app-container">
-      
-      <div class="interface-move">
-          <h1 class="title">Escape game : the treasure of President Coolidge</h1>
-          <div class="primary-container">
-            <button class="move-button" id="move-back-button">Back</button>
-            <canvas id="map" height="100" width="400"
-              >If you see this you need a compatible browser, try Firefox,
-              Chrome</canvas
-            >
-            <button class="move-button" id="move-forward-button">Forward</button>
+
+      <div class="game" id="game">
+        <div class="interface-move">
+            <!-- <h1 class="title">Escape game : the treasure of President Coolidge</h1> -->
+            <div class="interface-speak">
+              <p class="speak" id="text"></p>
+              <div class="timer" id="timer"></div>
+              <div class="exit" id="exit"></div>
+            </div>
+
+            <div class="primary-container">
+              <button class="move-button" id="move-back-button"><span class="arrows" id="arrow-back">&#9664;</span></button>
+              <canvas id="map" height="100" width="400"
+                >If you see this you need a compatible browser, try Firefox,
+                Chrome</canvas
+              >
+              <button class="move-button" id="move-forward-button"><span class="arrows" id="arrow-forward">&#9654;</span></button>
+            </div>
+        </div>
+
+        <div class="interface-enigma">
+          <div class="secondary-container">
+            <h2>Actions</h2>
+            <div class="actions" id="actions"></div>
+            <div class="actions-resolve" id="actions-resolve"></div>
           </div>
+          <div class="tertiary-container">
+            <div class="zoom-inventory" id="zoom-inventory"></div>
+          </div>
+          <div class="fourth-container">
+            <h2>Inventaire</h2>
+            <div class="inventory" id="inventory"></div>
+          </div>
+        </div>
       </div>
 
-      <div class="interface-speak">
-        <p class="speak" id="text"></p>
-        <div class="exit" id="exit"></div>
+      <div class="outside-game" id="beginning-game">
+        <h1>Escape game</h1> 
+        <h1>The treasure of President Coolidge</h1>
+        <div class="story">
+          Passionate about scuba diving, you have travel the world and mostly the seven seas since
+          numerous years. While you are looking for your next diving, you found a mysterious article
+          about the wreck of the SS President Coolidge, sunk during the World War II near the Vanuatu, 
+          in South Pacific Ocean. According to its author, in one of the room of this boat named the
+          Lady Room, a treasure would be hidden since it sunk. <br>
+          You love adventure, so you pack your equipment and fly to Vanuatu. <br>
+          You dive, found the wreck and begin to look for the Lady Room. You enter in what look like
+          the captain's room. You want to go out, but the door you came in through is blocked ! <br>
+          You have to find another exit, and quickly, because you have just enough oxygen in your bottle
+          for the next 30 minutes ! <br>
+          Good luck !
+        </div>
+        <div>
+          <input type="text" id="namePlayer" placeholder="What's your name ?">
+        </div>
+        <button id="start-game">Start the game !</button>
       </div>
 
-      <div class="interface-enigma">
-        <div class="secondary-container">
-          <h2>Actions</h2>
-          <div class="actions" id="actions"></div>
-          <div class="actions-resolve" id="actions-resolve"></div>
-        </div>
-        <div class="tertiary-container">
-          <div class="zoom-inventory" id="zoom-inventory"></div>
-        </div>
-        <div class="fourth-container">
-          <h2>Inventaire</h2>
-          <div class="inventory" id="inventory"></div>
-        </div>
+      <div class="outside-game" id="end-game">
+        <div class="story" id="exit-message">Exit message</div>
       </div>
     </div>
 
