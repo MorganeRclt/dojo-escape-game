@@ -10,11 +10,16 @@ const zoomInventoryId = "zoom-inventory"
 const zoomInventoryElement = document.getElementById(zoomInventoryId)
 const exitId = "exit"
 const exitElement = document.getElementById(exitId)
+const timerId = "timer"
+const timerElement = document.getElementById(timerId)
+const arrowForwardStyle = document.getElementById("arrow-forward").style
+const arrowBackStyle = document.getElementById("arrow-back").style
 
 import { Action } from '../Game/Action'
 import { World } from '../Game/World'
 import { say } from './Text'
 import { clearInventory } from './Inventory'
+import { Timer } from '../Game/Timer'
 
 /**
  * Add an action to the interface
@@ -31,7 +36,7 @@ export const addAction = ({ text, callback, identifier }) => {
   actionsElement.append(actionElement)
 }
 
-export const addResolveRoomCodeAction = (currentRoom) => {
+export const addResolveRoomCodeAction = (currentRoom, inventory) => {
   if (currentRoom.resolveAction !== null && currentRoom.resolveAction.isEnabled()) {
     const resolveCodeElement = document.createElement('div')
     Object.assign(resolveCodeElement, {
@@ -60,14 +65,14 @@ export const addResolveRoomCodeAction = (currentRoom) => {
       onclick: () => {
         const codeEntered = document.getElementById('code-input').value
         say('Try the code...')
-        if (codeEntered.toUpperCase() === currentRoom.resolveAction.code) {
+        if (codeEntered.toUpperCase() === currentRoom.resolveAction.code.toUpperCase()) {
           setTimeout(() => {
             say('The door is open !')
             if (currentRoom.nextRoom != null) {
               currentRoom.nextRoom.updateColor(),
               addMoveForwardAction(currentRoom)
             } else {
-              addExit()
+              addExit(inventory)
             }
             document.getElementById('resolve-room').innerHTML = ''
           }, 2000)
@@ -133,7 +138,7 @@ export const addResolveCodeAction = (action) => {
     onclick: () => {
       const codeEntered = document.getElementById('code-input-' + action.itemId).value
       say('Try the code...')
-      if (codeEntered.toUpperCase() === action.code) {
+      if (codeEntered.toUpperCase() === action.code.toUpperCase()) {
         setTimeout(() => {
           say(`The ${action.elementName} is open !`)
           document.getElementById(action.itemId).innerHTML = ''
@@ -156,17 +161,35 @@ export const addResolveCodeAction = (action) => {
 export const addMoveForwardAction = (currentRoom) => {
   if (currentRoom.forwardAction !== null && currentRoom.forwardAction.isEnabled()) {
     moveForwardElement.onclick = currentRoom.forwardAction.callback
+    arrowForwardStyle.color = "white"
   } else  {
     moveForwardElement.onclick = () => {}
+    arrowForwardStyle.color = "black"
   }
 }
 
 export const addMoveBackAction = (currentRoom) => {
   if (currentRoom.backAction !== null && currentRoom.backAction.isEnabled()) {
     moveBackElement.onclick = currentRoom.backAction.callback
+    arrowBackStyle.color = "white"
   } else {
     moveBackElement.onclick = () => {}
+    arrowBackStyle.color = "black"
   }
+}
+
+export const addTimer = (timer) => {
+  const newTimerElement = document.createElement('div')
+      Object.assign(newTimerElement, {
+          classList: ['timer-zoom'],
+          id: "timer",
+          innerHTML: timer.timerString
+      })
+  timerElement.append(newTimerElement)
+}
+
+export const updateTimer = (timer) => {
+  timerElement.innerHTML = timer.timerString
 }
 
 /**
@@ -180,23 +203,33 @@ export const addEnabledActions = (world) => {
   const currentRoom = world.player.currentRoom
   addMoveForwardAction(currentRoom)
   addMoveBackAction(currentRoom)
-  addResolveRoomCodeAction(currentRoom)
+  addResolveRoomCodeAction(currentRoom, world.inventory)
 }
 
-export const addExit = () => {
+export const addExit = (inventory) => {
   const exitButton = document.createElement("button")
   Object.assign(exitButton, {
     classList: ["exit-button"],
     id: "exitButton",
     onclick: () => {
-      console.log("Exit game")
       clearActions()
       clearZoom()
       clearInventory()
+      if (inventory.hasItem("treasurer4")) {
+        endGame(2)
+      } else {
+        endGame(1)
+      }
     },
     innerHTML: "Escape the boat"
   })
   exitElement.append(exitButton)
+
+  const exitText = document.createElement("p")
+  Object.assign(exitText, {
+    innerHTML: "! You can't go back to the boat after escaping !"
+  })
+  exitElement.append(exitText)
 }
 
 /**
@@ -222,3 +255,19 @@ export const clearResolveActions = () => {
  export const clearZoom = () => {
    zoomInventoryElement.innerHTML = ''
  }
+
+/**
+ * Called when the game end
+ * @param {Int} endingCode - 0, 1 or 2 : 0 if failure, 1 if escape but no treasure, 2 if escape with the treasure
+ */
+export const endGame = (endingCode) => {
+  document.getElementById("game").style.display = "none"
+  document.getElementById("end-game").style.display = "block"
+  if (endingCode === 0) {
+    document.getElementById("end-game").innerHTML = "Fail !"
+  } else if (endingCode === 1) {
+    document.getElementById("end-game").innerHTML = "You escape but you didn't find the treasure."
+  } else {
+    document.getElementById("end-game").innerHTML = "Congratulation, you escape and you found the treasure ! What an adventure..."
+  }
+}
