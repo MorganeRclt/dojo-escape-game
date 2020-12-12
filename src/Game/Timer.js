@@ -6,8 +6,8 @@ export class Timer {
         // this.beginDate = new Date(beginDateString)
         // const endDateString = 'January 1 2020 00:30:00 GMT+0200';
         // this.endDate = new Date(endDateString)
-        this.nbMin = 30
-        this.timerString = "00:30"
+        this.nbMin = 59
+        this.timerString = "00:59"
     }
 
     start() {
