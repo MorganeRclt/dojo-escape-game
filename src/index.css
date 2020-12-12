@@ -1,7 +1,7 @@
 :root {
-  --color-background: grey;
-  --color-outside: grey;
-  --color-bubble: aqua;
+  --color-background: rgb(1, 41, 93);
+  --color-outside: rgb(1, 28, 63);
+  --color-bubble: rgb(149, 240, 239);
   --color-shadow: black;
 }
 
@@ -36,11 +36,10 @@ body {
   position: absolute;
   top: 50px;
   left: 25%;
-  color: black;
   background-color: var(--color-outside);
   align-items: center;
   text-align: center;
-  box-shadow: 0px 0px 5px var(--color-shadow);
+  box-shadow: 0px 0px 20px var(--color-shadow);
 }
 
 #end-game {
@@ -109,7 +108,15 @@ body {
 .actions {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem 2rem 0rem 2rem;
+}
+
+.actions-resolve {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem 0rem 2rem;
+  align-items: center;
+  text-align: center;
 }
 
 .action-button {
@@ -135,6 +142,38 @@ body {
   margin-top: 1rem;
 }
 
+.code-label {
+  margin: 1rem 0.3rem 0.3rem 0;
+  font-family: sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.code-input {
+  margin: 0 0.3rem 0.3rem 0;
+  width: 50%;
+  padding: 0.5rem;
+  background: none;
+  border: 0.1rem solid white;
+}
+
+.code-input:focus {
+  color: white;
+}
+
+.action-resolve-button {
+  background: none;
+  border: 0.1rem solid white;
+  padding: 0.5rem;
+  color: white;
+}
+
+.action-resolve-button:hover {
+  background-color: white;
+  color: var(--color-background);
+}
+
+
 .item-button {
   padding: 0.35rem 1.2rem;
   margin: 0.3rem 0.3rem 0.3rem 0.3rem;
@@ -152,67 +191,91 @@ body {
 }
 
 .item-button:hover {
-  box-shadow: 0px 0px 6px var(--color-shadow);
+  box-shadow: 0px 0px 10px var(--color-shadow);
 }
 
 .item-button#mapr1 {
   background: url("assets/icon-map-70.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#key1r2 {
   background: url("assets/icon-oldkey-100.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#key2r3 {
   background: url("assets/icon-bigkey-100.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#key3r4 {
   background: url("assets/icon-tinykey-100.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#symbr1 {
   background: url("assets/symbr1.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle1r3 {
   background: url("assets/icon-bottle1r3.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle2r3 {
   background: url("assets/icon-bottle2r3.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle3r3 {
   background: url("assets/icon-bottle3r3.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle4r3 {
   background: url("assets/icon-bottle4r3.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#scorer4 {
   background: url("assets/icon-scorer4.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#pianosolr4 {
   background: url("assets/icon-pianosolr4.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#treasurer4 {
   background: url("assets/icon-treasurer4.png");
-  background-size: contain;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--color-bubble);
 }
 
@@ -248,27 +311,22 @@ body {
 .item-zoom#symbr1-zoom {
   background: url("assets/symbr1.png");
   background-size: contain;
-  background-color: white;
 }
 .item-zoom#circlesolr1-zoom {
   background: url("assets/circlesolr1.png");
   background-size: contain;
-  background-color: white;
 }
 .item-zoom#symbr2-zoom {
   background: url("assets/symbr2.png");
   background-size: contain;
-  background-color: white;
 }
 .item-zoom#symbsolr2-zoom {
   background: url("assets/symbsolr2.png");
   background-size: contain;
-  background-color: white;
 }
 .item-zoom#containerr2-zoom {
   background: url("assets/containerr2.png");
-  background-size: contain;
-  background-color: white;  
+  background-size: contain; 
 }
 .item-zoom#bottle1r3-zoom {
   background: url("assets/bottle1r3.png");
@@ -305,7 +363,6 @@ body {
 .item-zoom#pianosolr4-zoom {
   background: url("assets/pianosolr4.png");
   background-size: contain;
-  background-color: white;
 }
 .item-zoom#treasurer4-zoom {
   background: url("assets/treasurer4.png");
@@ -347,7 +404,7 @@ body {
 
 .speak {
   font-size: 1.5rem;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .story {
@@ -364,6 +421,25 @@ body {
   border:none;
   margin:0;
   padding:0;
+}
+
+.timer {
+  font-size: 23px;
+  margin-top: 2rem;
+}
+
+.exit-button {
+  background: none;
+  border: 0.1rem solid white;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  color: white;
+  transition: all 0.3s;
+}
+
+.exit-button:hover {
+  background-color: white;
+  color: var(--color-background);
 }
 
 /* mobile overrides */

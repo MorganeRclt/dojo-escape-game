@@ -36,18 +36,18 @@ export const addAction = ({ text, callback, identifier }) => {
   actionsElement.append(actionElement)
 }
 
-export const addResolveRoomCodeAction = (currentRoom, inventory) => {
+export const addResolveRoomCodeAction = (currentRoom, world) => {
   if (currentRoom.resolveAction !== null && currentRoom.resolveAction.isEnabled()) {
     const resolveCodeElement = document.createElement('div')
     Object.assign(resolveCodeElement, {
       id: 'resolve-room'
     })
 
-    const labelCodeElement = document.createElement('label')
+    const labelCodeElement = document.createElement('div')
     Object.assign(labelCodeElement, {
       classList: ['code-label'],
       id: 'code-label',
-      innerHTML: "Enter a code to unlock the door"
+      innerHTML: "Enter a code to unlock the door  🚪"
     })
     resolveCodeElement.append(labelCodeElement)
 
@@ -55,13 +55,13 @@ export const addResolveRoomCodeAction = (currentRoom, inventory) => {
     Object.assign(enterCodeElement, {
       type: 'text',
       classList: ['code-input'],
-      id: 'code-input'
+      id: 'code-input',
     })
     resolveCodeElement.append(enterCodeElement)
 
     const submitCodeElement = document.createElement('button')
     Object.assign(submitCodeElement, {
-      classList: ['action-button'],
+      classList: ['action-resolve-button'],
       onclick: () => {
         const codeEntered = document.getElementById('code-input').value
         say('Try the code...')
@@ -72,7 +72,7 @@ export const addResolveRoomCodeAction = (currentRoom, inventory) => {
               currentRoom.nextRoom.updateColor(),
               addMoveForwardAction(currentRoom)
             } else {
-              addExit(inventory)
+              addExit(world)
             }
             document.getElementById('resolve-room').innerHTML = ''
           }, 2000)
@@ -83,7 +83,7 @@ export const addResolveRoomCodeAction = (currentRoom, inventory) => {
           }, 2000)
         }
       },
-      innerHTML: "Submit"
+      innerHTML: "✔"
     })
     resolveCodeElement.append(submitCodeElement)
 
@@ -91,12 +91,13 @@ export const addResolveRoomCodeAction = (currentRoom, inventory) => {
   }
 }
 
-export const addInspectAction = (action) => {
+export const addInspectAction = (action, world) => {
+  console.log("AddInspect world : " + world)
   const actionElement = document.createElement('button')
   Object.assign(actionElement, {
     classList: ['action-button'],
     onclick: () => {
-      clearZoom()
+      clearZoom(world)
       const zoomElement = document.createElement('div')
       Object.assign(zoomElement, {
           classList: ['item-zoom'],
@@ -116,10 +117,11 @@ export const addResolveCodeAction = (action) => {
     id: action.itemId
   })
 
-  const labelCodeElement = document.createElement('label')
+  const labelCodeElement = document.createElement('div')
   Object.assign(labelCodeElement, {
     classList: ['code-label'],
     id: 'code-label-' + action.itemId,
+    for: 'code-input-' + action.itemId,
     innerHTML: action.text
   })
   resolveCodeElement.append(labelCodeElement)
@@ -134,7 +136,7 @@ export const addResolveCodeAction = (action) => {
 
   const submitCodeElement = document.createElement('button')
   Object.assign(submitCodeElement, {
-    classList: ['action-button'],
+    classList: ['action-resolve-button'],
     onclick: () => {
       const codeEntered = document.getElementById('code-input-' + action.itemId).value
       say('Try the code...')
@@ -151,7 +153,7 @@ export const addResolveCodeAction = (action) => {
         }, 2000)
       }
     },
-    innerHTML: "Submit"
+    innerHTML: "✔"
   })
   resolveCodeElement.append(submitCodeElement)
 
@@ -164,7 +166,7 @@ export const addMoveForwardAction = (currentRoom) => {
     arrowForwardStyle.color = "white"
   } else  {
     moveForwardElement.onclick = () => {}
-    arrowForwardStyle.color = "black"
+    arrowForwardStyle.color = "rgb(1, 41, 93)"
   }
 }
 
@@ -174,14 +176,14 @@ export const addMoveBackAction = (currentRoom) => {
     arrowBackStyle.color = "white"
   } else {
     moveBackElement.onclick = () => {}
-    arrowBackStyle.color = "black"
+    arrowBackStyle.color = "rgb(1, 41, 93)"
   }
 }
 
 export const addTimer = (timer) => {
   const newTimerElement = document.createElement('div')
       Object.assign(newTimerElement, {
-          classList: ['timer-zoom'],
+          classList: ['timer'],
           id: "timer",
           innerHTML: timer.timerString
       })
@@ -198,24 +200,25 @@ export const updateTimer = (timer) => {
  */
 export const addEnabledActions = (world) => {
   world.actions.forEach((action) => action.isEnabled() && addAction(action))
-  world.actionsInspect.forEach((action) => action.isEnabled() && addInspectAction(action))
+  world.actionsInspect.forEach((action) => action.isEnabled() && addInspectAction(action, world))
   world.actionsResolve.forEach((action) => action.isEnabled() && addResolveCodeAction(action))
   const currentRoom = world.player.currentRoom
   addMoveForwardAction(currentRoom)
   addMoveBackAction(currentRoom)
-  addResolveRoomCodeAction(currentRoom, world.inventory)
+  addResolveRoomCodeAction(currentRoom, world)
 }
 
-export const addExit = (inventory) => {
+export const addExit = (world) => {
+  console.log("Add exit world : " + world)
   const exitButton = document.createElement("button")
   Object.assign(exitButton, {
     classList: ["exit-button"],
     id: "exitButton",
     onclick: () => {
       clearActions()
-      clearZoom()
+      clearZoom(world)
       clearInventory()
-      if (inventory.hasItem("treasurer4")) {
+      if (world.inventory.hasItem("treasurer4")) {
         endGame(2)
       } else {
         endGame(1)
@@ -252,8 +255,13 @@ export const clearActions = () => {
 export const clearResolveActions = () => {
   resolveElement.innerHTML = ''
 }
- export const clearZoom = () => {
+ export const clearZoom = (world) => {
    zoomInventoryElement.innerHTML = ''
+   const items = world.inventory.items
+        for (let i in items) {
+            items[i].unselectItem()
+            document.getElementById(items[i].id).style.backgroundColor = "rgb(149, 240, 239)"
+        }
  }
 
 /**

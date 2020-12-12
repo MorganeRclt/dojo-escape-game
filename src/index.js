@@ -315,7 +315,7 @@ const game = () => {
   world.createInspectAction(
     {
       text: "Inspect the wall  ▩",
-      isEnabled: () => player.currentRoom === room2 && room3.color === "black"
+      isEnabled: () => player.currentRoom === room2 && room3.color === backgroundColor
     },
     "symbr2"
   )
@@ -323,7 +323,7 @@ const game = () => {
   world.createInspectAction(
     {
       text: "Inspect the door's lock  🔏",
-      isEnabled: () => player.currentRoom === room2 && room3.color === "black" && room2.userHaveFoundDoor
+      isEnabled: () => player.currentRoom === room2 && room3.color === backgroundColor && room2.userHaveFoundDoor
     },
     "symbsolr2"
   )
@@ -340,7 +340,7 @@ const game = () => {
   world.createInspectAction(
     {
       text: "Inspect the wall at your left  ▩",
-      isEnabled: () => player.currentRoom === room3 && room4.color === "black"
+      isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse1r3"
   )
@@ -348,7 +348,7 @@ const game = () => {
   world.createInspectAction(
     {
       text: "Inspect the wall in front of you  ▩",
-      isEnabled: () => player.currentRoom === room3 && room4.color === "black"
+      isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse2r3"
   )
@@ -356,7 +356,7 @@ const game = () => {
   world.createInspectAction(
     {
       text: "Inspect the wall at your right  ▩",
-      isEnabled: () => player.currentRoom === room3 && room4.color === "black"
+      isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse3r3"
   )
@@ -391,7 +391,7 @@ const game = () => {
 
   world.createResolveCodeAction(
     {
-      text: "Enter a code to unlock the trunk",
+      text: "Enter a code to unlock the trunk  🔒",
       callback: () =>
         new Promise((resolve) => {
           setTimeout(() => {
@@ -426,7 +426,7 @@ const game = () => {
 
   world.createResolveCodeAction(
     {
-      text: "Look in container number...",
+      text: "Look in container number...  📦",
       callback: () =>
         new Promise((resolve) => {
           setTimeout(() => {
@@ -461,7 +461,7 @@ const game = () => {
 
   world.createResolveCodeAction(
     {
-      text: "Enter a code to unlock the register",
+      text: "Enter a code to unlock the register  💰",
       callback: () =>
       new Promise((resolve) => {
         setTimeout(() => {
@@ -652,7 +652,7 @@ const game = () => {
     addAction(initLookGround)
     addAction(initLookDoor)
     addAction(initLookUnderDesk)
-    addInspectAction(inspectActionRubber)
+    addInspectAction(inspectActionRubber, world)
     addResolveRoomCodeAction(
       player.currentRoom
     )

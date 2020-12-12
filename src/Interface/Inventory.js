@@ -40,13 +40,17 @@ export const onSelectItem = (item, world) => {
     // TODO : improve
     unZoom()
     if (item.isSelected()) {
-        selectedItem.style.color = "white"
-        selectedItem.style.backgroundColor = "black" 
+        selectedItem.style.color = "rgb(0, 142, 207)"
+        selectedItem.style.backgroundColor = "rgb(149, 240, 239)" 
         item.unselectItem() 
-        unZoom()
     } else {
-        selectedItem.style.color = "black"
-        selectedItem.style.backgroundColor = "white"
+        const items = world.inventory.items
+        for (let i in items) {
+            items[i].unselectItem()
+            document.getElementById(items[i].id).style.backgroundColor = "rgb(149, 240, 239)"
+        }
+        selectedItem.style.color = "rgb(149, 240, 239)"
+        selectedItem.style.backgroundColor = "rgb(0, 142, 207)"
         item.selectItem()
         zoomOn(item)
 

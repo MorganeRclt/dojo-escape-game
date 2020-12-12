@@ -55,7 +55,6 @@ export class World {
   wrapCallbackForAutomaticActionsDisplay(callback) {
     return () => {
       clearActions()
-      clearZoom()
       return (callback ? callback() : Promise.resolve(null))
         .then(() => {
           addEnabledActions(this)
@@ -208,7 +207,7 @@ export class World {
       if (this.inventory.hasItemBeenUsed(item.id)) {
         drawUsedItem(item)
       } else {
-        drawItem(item)
+        drawItem(item, this)
       }
     })
     return this.inventory
