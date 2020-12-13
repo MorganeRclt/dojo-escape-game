@@ -20,24 +20,28 @@ const game = () => {
   const room1 = world.createRoom({
     name: 'Captain Cabin',
     isHead: true,
+    finalColor : "rgb(163, 58, 24)"
     },
   )
   const room2 = world.createRoom({ 
     name: 'Cargo Hold',
     xPos: 1,
     color: backgroundColor,
+    finalColor: "rgb(201, 99, 62)"
     },
 )
   const room3 = world.createRoom({
     name: 'Saloon',
     xPos: 2,
     color: backgroundColor,
+    finalColor: "rgb(206, 140, 82)"
     },
   )
   const room4 = world.createRoom({
     name: 'Lady Room',
     xPos: 3,
     color: backgroundColor,
+    finalColor: "rgb(244, 211, 159)",
     isTail: true,
     },
   )
@@ -386,7 +390,9 @@ const game = () => {
         }),
       isEnabled: () => player.currentRoom === room1 && room2.color === backgroundColor && room1.userHaveFoundDoor
     },
-   "SESENW"
+   "SESENW",
+   "Use the navigation map",
+   "This code is composed by letters S, N, E, W"
   )
 
   world.createResolveCodeAction(
@@ -402,6 +408,8 @@ const game = () => {
       isEnabled: () => player.currentRoom === room1 && player.hasDiscovered('trunkr1') && !inventory.hasItem(key1r2.id)
     },
     "15167",
+    "Use the rubber and the circle on captain's desk",
+    "Each circle on the rubber correspond to a digit on the circle",
     "trunkr1",
     "trunk",
     key1r2
@@ -421,7 +429,9 @@ const game = () => {
         }),
       isEnabled: () => player.currentRoom === room2 && room3.color === backgroundColor && room2.userHaveFoundDoor
     },
-    "henrynelson"
+    "henry nelson",
+    "Use the symbols found in captain's room and those on the wall",
+    "The code is a name, with a space between name and forename"
   )
 
   world.createResolveCodeAction(
@@ -437,6 +447,8 @@ const game = () => {
       isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key2r3.id)
     },
     "C6",
+    "Use the container's inventory",
+    "All symbols are repeated 4 times, except one",
     "containerr2",
     "container",
     key2r3
@@ -456,7 +468,9 @@ const game = () => {
         }),
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor && room3.userHaveFoundDoor
     },
-    "1514"
+    "1514",
+    "Use the morse code on the wall",
+    "The final code is composed by 4 digits"
   )
 
   world.createResolveCodeAction(
@@ -472,6 +486,8 @@ const game = () => {
       isEnabled: () => player.currentRoom === room3 && player.hasDiscovered('registerr3') && !inventory.hasItem(key3r4.id)
     },
     "1942",
+    "Use the bottles",
+    "Look at the level of the bottles",
     "registerr3",
     "register",
     key3r4
@@ -491,7 +507,9 @@ const game = () => {
         }),
       isEnabled: () => player.currentRoom === room4 && room4.userHaveFoundDoor && !player.exit
     },
-    "1011931"
+    "1011931",
+    "Use the piano, the score and the paper with lines (and Internet if you're not a musician)",
+    "The first piano-key is a do. The score gives the order, and the line the number associated."
   )
 
   room1.addResolveAction(resolveRoom1)
@@ -636,11 +654,11 @@ const game = () => {
   const timer = new Timer()
 
 /********************************************** GAME BEGIN ***************************************/
-  //room2.updateColor()
+  // room2.updateColor()
   // room3.updateColor()
   // room4.updateColor()
   setTimeout(() => {
-    say(`${player.name} wakes up.`),
+    say(`Good luck ${player.name} !`),
     addMoveForwardAction(
       player.currentRoom
     )
@@ -670,13 +688,11 @@ const setName = () => {
 }
 
 const beginning = () => {
-  console.log("Begin")
   document.getElementById("start-game").addEventListener("click", beginGame)
   //beginGame()
 }
 
 const beginGame = () => {
-  console.log("begin game")
   setName()
   document.getElementById("beginning-game").style.display = "none"
   document.getElementById("game").style.display = "block"

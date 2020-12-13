@@ -66,7 +66,7 @@ export class GetItemsAction extends Action {
  */
 export class ResolveCodeAction extends Action {
 
-  constructor(actionConfig, code, elementId = "door", elementName = "door", item = null, inventory = null) {
+  constructor(actionConfig, code, clue1, clue2, elementId = "door", elementName = "door", item = null, inventory = null) {
     if (item !== null) {
       super({
         ...actionConfig,
@@ -84,6 +84,8 @@ export class ResolveCodeAction extends Action {
     this.inventory = inventory
     this.elementId = elementId
     this.elementName = elementName
+    this.clue1 = clue1
+    this.clue2 = clue2
   }
 }
 

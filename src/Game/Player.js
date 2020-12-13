@@ -33,7 +33,6 @@ export class Player {
   }
 
   hasDiscovered(roomElement) {
-    console.log(this.roomElementDiscovered)
     for (var i in this.roomElementDiscovered) {
       if (this.roomElementDiscovered[i] === roomElement) {
         return true

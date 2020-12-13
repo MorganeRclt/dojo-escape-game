@@ -73,6 +73,7 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
               addMoveForwardAction(currentRoom)
             } else {
               addExit(world)
+              world.player.exit = true
             }
             document.getElementById('resolve-room').innerHTML = ''
           }, 2000)
@@ -87,12 +88,41 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
     })
     resolveCodeElement.append(submitCodeElement)
 
+    const clueButtonElement1 = document.createElement('button')
+    Object.assign(clueButtonElement1, {
+      classList: ["clue-button"],
+      id: "clue1-" + currentRoom.resolveAction.identifier,
+      onclick: () => {
+        selectClue(currentRoom.resolveAction.identifier, currentRoom.resolveAction.clue1, 1)
+      },
+      innerHTML: "?"
+    })
+    resolveCodeElement.append(clueButtonElement1)
+
+    const clueButtonElement2 = document.createElement('button')
+    Object.assign(clueButtonElement2, {
+      classList: ["clue-button"],
+      id: "clue2-" + currentRoom.resolveAction.identifier,
+      onclick: () => {
+        selectClue(currentRoom.resolveAction.identifier, currentRoom.resolveAction.clue2, 2)
+      },
+      innerHTML: "?"
+    })
+    resolveCodeElement.append(clueButtonElement2)
+
+    const clueTextElement = document.createElement("div")
+    Object.assign(clueTextElement, {
+      classList: ["clue-text"],
+      id: "cluetext-" + currentRoom.resolveAction.identifier,
+      innerHTML: ""
+    })
+    resolveCodeElement.append(clueTextElement)
+
     resolveElement.append(resolveCodeElement)
   }
 }
 
 export const addInspectAction = (action, world) => {
-  console.log("AddInspect world : " + world)
   const actionElement = document.createElement('button')
   Object.assign(actionElement, {
     classList: ['action-button'],
@@ -157,7 +187,62 @@ export const addResolveCodeAction = (action) => {
   })
   resolveCodeElement.append(submitCodeElement)
 
+  const clueButtonElement1 = document.createElement('button')
+  Object.assign(clueButtonElement1, {
+    classList: ["clue-button"],
+    id: "clue1-" + action.itemId,
+    onclick: () => {
+      selectClue(action.itemId, action.clue1, 1)
+    },
+    innerHTML: "?"
+  })
+  resolveCodeElement.append(clueButtonElement1)
+
+  const clueButtonElement2 = document.createElement('button')
+  Object.assign(clueButtonElement2, {
+    classList: ["clue-button"],
+    id: "clue2-" + action.itemId,
+    onclick: () => {
+      selectClue(action.itemId, action.clue2, 2)
+    },
+    innerHTML: "?"
+  })
+  resolveCodeElement.append(clueButtonElement2)
+
+  const clueTextElement = document.createElement("div")
+  Object.assign(clueTextElement, {
+    classList: ["clue-text"],
+    id: "cluetext-" + action.itemId,
+    innerHTML: ""
+  })
+  resolveCodeElement.append(clueTextElement)
+
   resolveElement.append(resolveCodeElement)
+}
+
+export const selectClue = (actionId, clue, clueNb) => {
+  const clueTextElement = document.getElementById("cluetext-" + actionId)
+  const clueButtonElement = document.getElementById("clue" + clueNb + "-" + actionId)
+  let clueButtonOtherElement = document.getElementById("clue1-" + actionId)
+  if (clueNb === 1) {
+    clueButtonOtherElement = document.getElementById("clue2-" + actionId)
+  }
+
+  if (clueTextElement.innerHTML === "") {
+    clueTextElement.innerHTML = clue
+    clueButtonElement.style.background = "white"
+    clueButtonElement.style.color = "rgb(1, 41, 93)"
+  } else if (clueTextElement.innerHTML === clue) {
+    clueTextElement.innerHTML = ""
+    clueButtonElement.style.background = "rgb(1, 41, 93)"
+    clueButtonElement.style.color = "white"
+  } else if (clueTextElement.innerHTML !== clue) {
+    clueTextElement.innerHTML = clue
+    clueButtonElement.style.background = "white"
+    clueButtonElement.style.color = "rgb(1, 41, 93)"
+    clueButtonOtherElement.style.background = "rgb(1, 41, 93)"
+    clueButtonOtherElement.style.color = "white"
+  }
 }
 
 export const addMoveForwardAction = (currentRoom) => {
@@ -209,30 +294,32 @@ export const addEnabledActions = (world) => {
 }
 
 export const addExit = (world) => {
-  console.log("Add exit world : " + world)
-  const exitButton = document.createElement("button")
-  Object.assign(exitButton, {
-    classList: ["exit-button"],
-    id: "exitButton",
-    onclick: () => {
-      clearActions()
-      clearZoom(world)
-      clearInventory()
-      if (world.inventory.hasItem("treasurer4")) {
-        endGame(2)
-      } else {
-        endGame(1)
-      }
-    },
-    innerHTML: "Escape the boat"
-  })
-  exitElement.append(exitButton)
+  if (document.getElementById("exitButton") === null) {
+    const exitButton = document.createElement("button")
+    Object.assign(exitButton, {
+      classList: ["exit-button"],
+      id: "exitButton",
+      onclick: () => {
+        clearActions()
+        clearZoom(world)
+        clearInventory()
+        if (world.inventory.hasItem("treasurer4")) {
+          endGame(2)
+        } else {
+          endGame(1)
+        }
+      },
+      innerHTML: "Escape the boat"
+    })
+    exitElement.append(exitButton)
 
-  const exitText = document.createElement("p")
-  Object.assign(exitText, {
-    innerHTML: "! You can't go back to the boat after escaping !"
-  })
-  exitElement.append(exitText)
+    const exitText = document.createElement("p")
+    Object.assign(exitText, {
+      classList: ["indication"],
+      innerHTML: "! You can't go back to the boat after escaping !"
+    })
+    exitElement.append(exitText)
+  }
 }
 
 /**
@@ -272,10 +359,10 @@ export const endGame = (endingCode) => {
   document.getElementById("game").style.display = "none"
   document.getElementById("end-game").style.display = "block"
   if (endingCode === 0) {
-    document.getElementById("end-game").innerHTML = "Fail !"
+    document.getElementById("end-game").innerHTML = "Time is over, you run out of oxygen !"
   } else if (endingCode === 1) {
-    document.getElementById("end-game").innerHTML = "You escape but you didn't find the treasure."
+    document.getElementById("end-game").innerHTML = "Congratulation, you escaped the boat ! But the treasure will last forever in the wreck of SS president Coolidge..."
   } else {
-    document.getElementById("end-game").innerHTML = "Congratulation, you escape and you found the treasure ! What an adventure..."
+    document.getElementById("end-game").innerHTML = "Congratulation, you escaped the boat and you found the treasure ! What an adventure..."
   }
 }

@@ -132,21 +132,7 @@ export class World {
     return action
   }
 
-  createResolveRoomCodeAction(actionConfig, code) {
-    const action = new ResolveCodeAction(
-      {
-        ...actionConfig,
-        world: this,
-        callback: this.wrapCallbackForAutomaticActionsDisplay(
-          actionConfig.callback
-        )
-      },
-      code
-    )
-    return action
-  }
-
-  createResolveCodeAction(actionConfig, code, elementId, elementName, item) {
+  createResolveRoomCodeAction(actionConfig, code, clue1, clue2) {
     const action = new ResolveCodeAction(
       {
         ...actionConfig,
@@ -156,6 +142,24 @@ export class World {
         )
       },
       code,
+      clue1,
+      clue2
+    )
+    return action
+  }
+
+  createResolveCodeAction(actionConfig, code, clue1, clue2, elementId, elementName, item) {
+    const action = new ResolveCodeAction(
+      {
+        ...actionConfig,
+        world: this,
+        callback: this.wrapCallbackForAutomaticActionsDisplay(
+          actionConfig.callback
+        )
+      },
+      code,
+      clue1,
+      clue2,
       elementId,
       elementName,
       item,

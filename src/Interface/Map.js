@@ -14,6 +14,7 @@ const mapContext = mapCanvas.getContext('2d')
  */
 export const drawRoom = (room) => {
   mapContext.fillStyle = room.color
+  mapContext.strokeStyle = "white"
   if (room.isHead) {
     drawHead(room)
   } else if (room.isTail) {
@@ -30,13 +31,19 @@ export const drawRect = (room) => {
     room.width * scaling,
     room.height * scaling
   )
+  mapContext.strokeRect(
+    room.xPos * scaling,
+    room.yPos * scaling,
+    room.width * scaling,
+    room.height * scaling
+  )
 }
 
 export const drawHead = (room) => {
   mapContext.beginPath()
   mapContext.moveTo(
-    (room.xPos + 0.5) * scaling,
-    room.yPos * scaling
+    (room.xPos + 0.1) * scaling,
+    (room.yPos + 0.4) * scaling
   )
   mapContext.lineTo(
     (room.xPos + 1) * scaling,
@@ -44,18 +51,41 @@ export const drawHead = (room) => {
   )
   mapContext.lineTo(
     (room.xPos + 1) * scaling,
-    (room.yPos + 1) * scaling
+    (room.yPos + 1) * scaling,
   )
   mapContext.lineTo(
-    (room.xPos + 0.5) * scaling,
-    (room.yPos + 1) * scaling
+    (room.xPos + 0.1) * scaling,
+    (room.yPos + 0.6) * scaling,
   )
   mapContext.bezierCurveTo(
-    (room.xPos - 0.1) * scaling, (room.yPos + 1) * scaling,
-    (room.xPos - 0.1) * scaling, room.yPos * scaling,
-    (room.xPos + 0.5) * scaling, room.yPos * scaling
+    (room.xPos - 0) * scaling, (room.yPos + 0.55) * scaling,
+    (room.xPos - 0) * scaling, (room.yPos + 0.45) * scaling,
+    (room.xPos + 0.1) * scaling, (room.yPos + 0.4) * scaling
   )
+  // mapContext.closePath()
+  // mapContext.moveTo(
+  //   (room.xPos + 0.5) * scaling,
+  //   room.yPos * scaling
+  // )
+  // mapContext.lineTo(
+  //   (room.xPos + 1) * scaling,
+  //   room.yPos * scaling
+  // )
+  // mapContext.lineTo(
+  //   (room.xPos + 1) * scaling,
+  //   (room.yPos + 1) * scaling
+  // )
+  // mapContext.lineTo(
+  //   (room.xPos + 0.5) * scaling,
+  //   (room.yPos + 1) * scaling
+  // )
+  // mapContext.bezierCurveTo(
+  //   (room.xPos - 0.1) * scaling, (room.yPos + 1) * scaling,
+  //   (room.xPos - 0.1) * scaling, room.yPos * scaling,
+  //   (room.xPos + 0.5) * scaling, room.yPos * scaling
+  // )
   mapContext.fill()
+  mapContext.stroke()
 }
 
 export const drawTail = (room) => {
@@ -79,6 +109,7 @@ export const drawTail = (room) => {
   )
   mapContext.closePath()
   mapContext.fill()
+  mapContext.stroke()
 }
 
 /**

@@ -10,6 +10,12 @@ body {
   color: white;
 }
 
+h1 {
+  font-family: sans-serif;
+  font-weight: 300;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+}
 
 .app-container {
   position: relative;
@@ -32,7 +38,7 @@ body {
 
 .outside-game {
   width: 50%;
-  height: 50rem;
+  height: 52rem;
   position: absolute;
   top: 50px;
   left: 25%;
@@ -155,22 +161,40 @@ body {
   padding: 0.5rem;
   background: none;
   border: 0.1rem solid white;
+  color:white;
 }
 
 .code-input:focus {
   color: white;
 }
 
-.action-resolve-button {
+.action-resolve-button,
+#namePlayer {
   background: none;
   border: 0.1rem solid white;
   padding: 0.5rem;
   color: white;
+  transition: all 0.3s;
 }
 
-.action-resolve-button:hover {
+.action-resolve-button:hover,
+#namePlayer:hover {
   background-color: white;
   color: var(--color-background);
+}
+
+.clue-button {
+  background: none;
+  color: white;
+  border: 0.1rem solid white;
+  border-radius: 50%;
+  margin-left: 1rem;
+  transition: all 0.3s;
+}
+
+.clue-button:hover {
+  color: var(--color-background);
+  background-color: white;
 }
 
 
@@ -396,10 +420,7 @@ body {
 }
 
 .title {
-  font-size: 2rem;
-  width: 700px;
-  margin: 2rem 1rem 1rem 1rem;
-  padding: 0;
+  margin-top: 2rem;
 }
 
 .speak {
@@ -408,7 +429,9 @@ body {
 }
 
 .story {
-  margin: 4rem;
+  margin: 4rem 4rem 2rem 4rem;
+  color: white;
+  font-size: 20px;
 }
 
 .arrows {
@@ -426,9 +449,26 @@ body {
 .timer {
   font-size: 23px;
   margin-top: 2rem;
+  font-family: sans-serif;
 }
 
-.exit-button {
+.indication,
+.clue-text {
+  font-size: 20px;
+  margin-top: 0.5rem;
+}
+
+ul {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+li {
+  font-size: 18px
+}
+
+.exit-button,
+#start-game {
   background: none;
   border: 0.1rem solid white;
   padding: 0.5rem;
@@ -437,7 +477,8 @@ body {
   transition: all 0.3s;
 }
 
-.exit-button:hover {
+.exit-button:hover,
+#start-game:hover {
   background-color: white;
   color: var(--color-background);
 }

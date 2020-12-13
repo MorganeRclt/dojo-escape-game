@@ -1,6 +1,4 @@
 const randomValue = () => Math.floor(Math.random() * 255)
-const randomColor = () =>
-  `rgb(${randomValue()}, ${randomValue()}, ${randomValue()})`
 import { drawRoom } from '../Interface/Map'
 
 export class Room {
@@ -15,13 +13,14 @@ export class Room {
    * @param {Action} forwardAction - Action to move forward 
    * @param {Action} backAction - Action to move back
    */
-  constructor({ name, height = 1, width = 1, xPos = 0, yPos = 0, color, isHead = false, isTail = false }) {
+  constructor({ name, height = 1, width = 1, xPos = 0, yPos = 0, color, finalColor, isHead = false, isTail = false }) {
     this.name = name
     this.height = height
     this.width = width
     this.xPos = xPos
     this.yPos = yPos
-    this.color = color ? color : randomColor()
+    this.color = color ? color : finalColor
+    this.finalColor = finalColor
 
     this.isHead = isHead
     this.isTail = isTail 
@@ -57,7 +56,7 @@ export class Room {
    * @param {string} color - The new color
    */
   updateColor(color) {
-    this.color = color ? color : randomColor()
+    this.color = color ? color : this.finalColor
     drawRoom(this)
   }
 
