@@ -21,6 +21,8 @@ import { say } from './Text'
 import { clearInventory } from './Inventory'
 import { Timer } from '../Game/Timer'
 
+const cluesUsed = [] // save all clues the user have used
+
 /**
  * Add an action to the interface
  * @param {Action} action action to register
@@ -93,10 +95,19 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
       classList: ["clue-button"],
       id: "clue1-" + currentRoom.resolveAction.identifier,
       onclick: () => {
+        const idClue = "c1-" + currentRoom.resolveAction.identifier
+        if (!(cluesUsed.includes(idClue))) {
+          cluesUsed.push(idClue)
+          world.timer.rmMinuteClue(1)
+        }
+        console.log(cluesUsed)
         selectClue(currentRoom.resolveAction.identifier, currentRoom.resolveAction.clue1, 1)
       },
       innerHTML: "?"
     })
+    if (cluesUsed.includes("c1-" + currentRoom.resolveAction.identifier)) {
+      clueButtonElement1.style.opacity = "100%"
+    }
     resolveCodeElement.append(clueButtonElement1)
 
     const clueButtonElement2 = document.createElement('button')
@@ -104,10 +115,19 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
       classList: ["clue-button"],
       id: "clue2-" + currentRoom.resolveAction.identifier,
       onclick: () => {
+        const idClue = "c2-" + currentRoom.resolveAction.identifier
+        if (!(cluesUsed.includes(idClue))) {
+          cluesUsed.push(idClue)
+          world.timer.rmMinuteClue(1)
+        }
+        console.log(cluesUsed)
         selectClue(currentRoom.resolveAction.identifier, currentRoom.resolveAction.clue2, 2)
       },
       innerHTML: "?"
     })
+    if (cluesUsed.includes("c2-" + currentRoom.resolveAction.identifier)) {
+      clueButtonElement2.style.opacity = "100%"
+    }
     resolveCodeElement.append(clueButtonElement2)
 
     const clueTextElement = document.createElement("div")
@@ -141,7 +161,8 @@ export const addInspectAction = (action, world) => {
   actionsElement.append(actionElement)
 }
 
-export const addResolveCodeAction = (action) => {
+export const addResolveCodeAction = (action, world) => {
+  console.log(world)
   const resolveCodeElement = document.createElement('div')
   Object.assign(resolveCodeElement, {
     id: action.itemId
@@ -190,29 +211,47 @@ export const addResolveCodeAction = (action) => {
   const clueButtonElement1 = document.createElement('button')
   Object.assign(clueButtonElement1, {
     classList: ["clue-button"],
-    id: "clue1-" + action.itemId,
+    id: "clue1-" + action.item.id,
     onclick: () => {
-      selectClue(action.itemId, action.clue1, 1)
+      const idClue = "c1-" + action.item.id
+      if (!(cluesUsed.includes(idClue))) {
+        cluesUsed.push(idClue)
+        world.timer.rmMinuteClue(1)
+      }
+      console.log(cluesUsed)
+      selectClue(action.item.id, action.clue1, 1)
     },
     innerHTML: "?"
   })
+  if (cluesUsed.includes("c1-" + action.item.id)) {
+    clueButtonElement1.style.opacity = "100%"
+  }
   resolveCodeElement.append(clueButtonElement1)
 
   const clueButtonElement2 = document.createElement('button')
   Object.assign(clueButtonElement2, {
     classList: ["clue-button"],
-    id: "clue2-" + action.itemId,
+    id: "clue2-" + action.item.id,
     onclick: () => {
-      selectClue(action.itemId, action.clue2, 2)
+      const idClue = "c2-" + action.item.id
+      if (!(cluesUsed.includes(idClue))) {
+        cluesUsed.push(idClue)
+        world.timer.rmMinuteClue(1)
+      }
+      console.log(cluesUsed)
+      selectClue(action.item.id, action.clue2, 2)
     },
     innerHTML: "?"
   })
+  if (cluesUsed.includes("c2-" + action.item.id)) {
+    clueButtonElement2.style.opacity = "100%"
+  }
   resolveCodeElement.append(clueButtonElement2)
 
   const clueTextElement = document.createElement("div")
   Object.assign(clueTextElement, {
     classList: ["clue-text"],
-    id: "cluetext-" + action.itemId,
+    id: "cluetext-" + action.item.id,
     innerHTML: ""
   })
   resolveCodeElement.append(clueTextElement)
@@ -227,7 +266,7 @@ export const selectClue = (actionId, clue, clueNb) => {
   if (clueNb === 1) {
     clueButtonOtherElement = document.getElementById("clue2-" + actionId)
   }
-
+  clueButtonElement.style.opacity = '100%'
   if (clueTextElement.innerHTML === "") {
     clueTextElement.innerHTML = clue
     clueButtonElement.style.background = "white"
@@ -286,7 +325,7 @@ export const updateTimer = (timer) => {
 export const addEnabledActions = (world) => {
   world.actions.forEach((action) => action.isEnabled() && addAction(action))
   world.actionsInspect.forEach((action) => action.isEnabled() && addInspectAction(action, world))
-  world.actionsResolve.forEach((action) => action.isEnabled() && addResolveCodeAction(action))
+  world.actionsResolve.forEach((action) => action.isEnabled() && addResolveCodeAction(action, world))
   const currentRoom = world.player.currentRoom
   addMoveForwardAction(currentRoom)
   addMoveBackAction(currentRoom)
@@ -304,9 +343,9 @@ export const addExit = (world) => {
         clearZoom(world)
         clearInventory()
         if (world.inventory.hasItem("treasurer4")) {
-          endGame(2)
+          endGame(2, world)
         } else {
-          endGame(1)
+          endGame(1, world)
         }
       },
       innerHTML: "Escape the boat"
@@ -354,15 +393,26 @@ export const clearResolveActions = () => {
 /**
  * Called when the game end
  * @param {Int} endingCode - 0, 1 or 2 : 0 if failure, 1 if escape but no treasure, 2 if escape with the treasure
+ * @param {World} world - to get Timer
  */
-export const endGame = (endingCode) => {
+export const endGame = (endingCode, world) => {
   document.getElementById("game").style.display = "none"
   document.getElementById("end-game").style.display = "block"
   if (endingCode === 0) {
-    document.getElementById("end-game").innerHTML = "Time is over, you run out of oxygen !"
-  } else if (endingCode === 1) {
-    document.getElementById("end-game").innerHTML = "Congratulation, you escaped the boat ! But the treasure will last forever in the wreck of SS president Coolidge..."
+    document.getElementById("exit-message").innerHTML = "Time is over, you run out of oxygen !"
   } else {
-    document.getElementById("end-game").innerHTML = "Congratulation, you escaped the boat and you found the treasure ! What an adventure..."
-  }
+    if (endingCode === 1) {
+      document.getElementById("exit-message").innerHTML = "Congratulation, you escaped the boat ! But the treasure will last forever in the wreck of SS president Coolidge..."
+    } else {
+      document.getElementById("exit-message").innerHTML = "Congratulation, you escaped the boat and you found the treasure ! What an adventure..."
+    }
+    document.getElementById("exit-time").innerHTML = "You escaped in " + (40 - world.timer.nbMin) + " minutes"
+    if (cluesUsed.length === 0) {
+      document.getElementById("exit-nb-clues").innerHTML = "You didn't use any clue, well done !"
+    } else if (cluesUsed.length === 1) {
+      document.getElementById("exit-nb-clues").innerHTML = "You used only one clue, well done !"
+    } else {
+      document.getElementById("exit-nb-clues").innerHTML = "You used " + cluesUsed.length + " clues."
+    }
+  } 
 }

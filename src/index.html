@@ -48,37 +48,43 @@
       <div class="outside-game" id="beginning-game">
         <div class="title">
           <h1>Escape game</h1> 
-          <h1>The treasure of President Coolidge</h1>
+          <h1>The Treasure of President Coolidge</h1>
         </div>
         <div class="story">
-          Passionate about scuba diving, you have travelled the world and mostly the seven seas since
-          numerous years. While you are looking for your next diving, you found a mysterious article
-          about the wreck of the SS President Coolidge, sunk during the World War II near the Vanuatu, 
-          in South Pacific Ocean. According to its author, in one of the boat's room, named the
-          Lady Room, a treasure would be hidden. <br>
+          Passionate about scuba diving, you have travelled the world and especially the seven seas for
+          numerous years. While you are looking for your next diving, you find a mysterious article
+          about the wreck of the SS President Coolidge. This boat has sunk during the World War II near the Vanuatu, 
+          in South Pacific Ocean. And according to its author, a treasure would be hidden in one of the boat's room: the
+          Lady Room ! <br>
           You love adventure, so you pack your equipment and fly to Vanuatu. <br>
-          You dive, found the wreck and begin to look for the Lady Room. You enter in what look like
-          the captain's room. You want to go out, but the door you came in through is blocked ! <br>
-          You have to find another exit, quickly, because you have just enough oxygen in your bottle
-          for the next 30 minutes ! <br>
+          You dive, find the wreck and begin to look for the Lady Room. You enter in what looks like
+          the captain's office. This is not the right room, so you try to go out, but the door you came in through is blocked ! <br>
+          You must quickly find another exit, because you have just enough oxygen in your bottle
+          for the next 45 minutes ! <br>
         </div>
         <ul>
-          <li>You have 40 minutes to escape the boat or you'll loose</li>
-          <li>You'll have to find code, it can be letter or digits</li>
-          <li>You'll find items : each items is useful for one only enigma</li>
+          <li>🏃   You have 45 minutes to escape the boat or you'll loose</li>
+          <li>🔒    You'll have to find codes, it can be letters or digits</li>
+          <li>💎   You'll find items : each item is useful for only one enigma</li>
           <li>
-            If you can't resolve an enigma, you can use clues. Click on "?". There is two clues for each enigma, 
-            begin with the first one (the left "?")
+            ❓    If you can't resolve an enigma, you can use clues, but each clue you use will make you lose 1 minute.<br>
+            Click on "?". There are two clues for each enigma, 
+            begin with the first one (the left "?").
           </li>
         </ul>
         <div>
           <input type="text" id="namePlayer" placeholder="What's your name ?">
         </div>
-        <button id="start-game">Start the game !</button>
+        <button class="start-game" id="start-game">Start the game !</button>
       </div>
 
       <div class="outside-game" id="end-game">
-        <div class="story" id="exit-message">Exit message</div>
+        <div class="exit-message" id="exit-message">Exit message</div>
+        <div class="stat">
+          <div class="exit-time" id="exit-time"></div>
+          <div class="exit-nb-clues" id="exit-nb-clues"></div>
+        </div>
+        <button class="start-game" onClick="window.location.reload();">Play again !</button>
       </div>
     </div>
 

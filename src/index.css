@@ -157,7 +157,7 @@ h1 {
 
 .code-input {
   margin: 0 0.3rem 0.3rem 0;
-  width: 50%;
+  width: 15rem;
   padding: 0.5rem;
   background: none;
   border: 0.1rem solid white;
@@ -185,6 +185,7 @@ h1 {
 
 .clue-button {
   background: none;
+  opacity: 50%;
   color: white;
   border: 0.1rem solid white;
   border-radius: 50%;
@@ -313,15 +314,15 @@ h1 {
   background-size: contain;
 }
 .item-zoom#key1r2-zoom {
-  background: url("assets/icon-oldkey-100.png");
+  background: url("assets/oldkeyr2.png");
   background-size: contain;
 }
 .item-zoom#key2r3-zoom {
-  background: url("assets/icon-bigkey-100.png");
+  background: url("assets/bigkeyr1.png");
   background-size: contain;
 }
 .item-zoom#key3r4-zoom {
-  background: url("assets/icon-tinykey-100.png");
+  background: url("assets/tinykeyr3.png");
   background-size: contain;
 }
 .item-zoom#rudderr1-zoom {
@@ -429,7 +430,7 @@ h1 {
 }
 
 .story {
-  margin: 4rem 4rem 2rem 4rem;
+  margin: 2rem 4rem 2rem 4rem;
   color: white;
   font-size: 20px;
 }
@@ -447,7 +448,7 @@ h1 {
 }
 
 .timer {
-  font-size: 23px;
+  font-size: 20px;
   margin-top: 2rem;
   font-family: sans-serif;
 }
@@ -459,6 +460,7 @@ h1 {
 }
 
 ul {
+  list-style-type: none;
   margin-left: 2rem;
   margin-right: 2rem;
 }
@@ -468,7 +470,7 @@ li {
 }
 
 .exit-button,
-#start-game {
+.start-game {
   background: none;
   border: 0.1rem solid white;
   padding: 0.5rem;
@@ -478,9 +480,23 @@ li {
 }
 
 .exit-button:hover,
-#start-game:hover {
+.start-game:hover {
   background-color: white;
   color: var(--color-background);
+}
+
+.exit-message {
+  font-size: 25px;
+  margin: 6rem;
+}
+
+.exit-time,
+.exit-nb-clues {
+  font-size: 22px;
+}
+
+.stat {
+  margin-bottom: 4rem;
 }
 
 /* mobile overrides */

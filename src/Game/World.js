@@ -6,6 +6,7 @@ import { drawRoom, drawPlayer } from '../Interface/Map'
 import { drawItem, clearInventory, drawUsedItem } from '../Interface/Inventory'
 import { Action, MoveAction, GetItemsAction, ResolveCodeAction, InspectAction } from './Action'
 import { clearActions, clearResolveActions, addEnabledActions, clearZoom } from '../Interface/Action'
+import { Timer } from './Timer'
 
 export class World {
   /**
@@ -43,6 +44,12 @@ export class World {
    * @type {Inventory}
    */
   inventory = new Inventory()
+
+  /**
+   * Timer
+   * @type {Timer}
+   */
+  timer = new Timer(this)
 
   constructor(name) {
     this.name = name
@@ -217,9 +224,7 @@ export class World {
     return this.inventory
   }
 
-  createInitialItems() {
-    const initial_item = new Item('key1', 'old key')
-    this.inventory.addItem(initial_item)
-    return initial_item
+  createTimer() {
+    return this.timer
   }
 }

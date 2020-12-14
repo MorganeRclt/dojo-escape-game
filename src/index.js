@@ -137,7 +137,7 @@ const game = () => {
         new Promise((resolve) => {
           say(`${player.name} searches on the captain's desk...`)
           setTimeout(() => {
-            say(`${player.name} found navigation map with strange indications...`)
+            say(`${player.name} finds a navigation map with strange indications...`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -154,7 +154,7 @@ const game = () => {
         new Promise((resolve) => {
           say(`${player.name} looks at the wall...`)
           setTimeout(() => {
-            say(`${player.name} found an American flag, with writings on it`)
+            say(`${player.name} finds a flag, with writings on it`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -173,7 +173,7 @@ const game = () => {
         new Promise((resolve) => {
           say(`${player.name} looks under the sofa...`)
           setTimeout(() => {
-            say(`${player.name} found a bottle (there's just enough left for a nightcap !)`)
+            say(`${player.name} finds a bottle (there's just enough left for a last glass !)`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -205,9 +205,9 @@ const game = () => {
       text: "Look on the table  🍻",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} looks under the counter...`)
+          say(`${player.name} looks under the table...`)
           setTimeout(() => {
-            say(`${player.name} found an intact bottle in the middle of the glass !`)
+            say(`${player.name} finds a bottle hidden under seaweeds !`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -222,9 +222,9 @@ const game = () => {
       text: "Look at the bar shelf  🍾",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} looks int the bar shelf...`)
+          say(`${player.name} looks into the bar shelf...`)
           setTimeout(() => {
-            say(`${player.name} found a bottle !`)
+            say(`${player.name} finds a bottle !`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -240,9 +240,9 @@ const game = () => {
       text: "Look at the table  🍽",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look at the table...`)
+          say(`${player.name} looks at the table...`)
           setTimeout(() => {
-            say(`${player.name} found a music score.`)
+            say(`${player.name} finds a music score.`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -257,9 +257,9 @@ const game = () => {
       text: "Look at the sofa  🛋",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look at the sofa..`)
+          say(`${player.name} looks at the sofa...`)
           setTimeout(() => {
-            say(`${player.name} found a strange code.`)
+            say(`${player.name} finds a strange code.`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -275,9 +275,9 @@ const game = () => {
       text: "Use old key, tiny key and big key to open the trunk  🔑",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} tries the keys..`)
+          say(`${player.name} tries the keys...`)
           setTimeout(() => {
-            say(`${player.name} has found the Lady treasure !!`)
+            say(`${player.name} finds the Lady treasure !!`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -343,7 +343,7 @@ const game = () => {
   /******** ROOM 3 **********/
   world.createInspectAction(
     {
-      text: "Inspect the wall at your left  ▩",
+      text: "Inspect the wall to your left  ▩",
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse1r3"
@@ -359,7 +359,7 @@ const game = () => {
 
   world.createInspectAction(
     {
-      text: "Inspect the wall at your right  ▩",
+      text: "Inspect the wall to your right  ▩",
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse3r3"
@@ -408,8 +408,8 @@ const game = () => {
       isEnabled: () => player.currentRoom === room1 && player.hasDiscovered('trunkr1') && !inventory.hasItem(key1r2.id)
     },
     "15167",
-    "Use the rubber and the circle on captain's desk",
-    "Each circle on the rubber correspond to a digit on the circle",
+    "Use the rubber and the cross with digits on the captain's desk",
+    "Each symbol on the rubber corresponds to a digit",
     "trunkr1",
     "trunk",
     key1r2
@@ -509,7 +509,7 @@ const game = () => {
     },
     "1011931",
     "Use the piano, the score and the paper with lines (and Internet if you're not a musician)",
-    "The first piano-key is a do. The score gives the order, and the line the number associated."
+    "The first piano-key is a do. The score gives the order, and the lines give the associated number."
   )
 
   room1.addResolveAction(resolveRoom1)
@@ -526,9 +526,9 @@ const game = () => {
       text: "Look on the ground  ⛵",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look on the ground...`)
+          say(`${player.name} looks on the ground...`)
           setTimeout(() => {
-            say(`${player.name} has found a trap door, locked by a code !`)
+            say(`${player.name} finds a trap door, locked by a code !`)
             room1.userHaveFoundDoor = true
             resolve()
           }, 3000)
@@ -542,7 +542,7 @@ const game = () => {
       text: "Inspect the Captain's Cabin entrance door  🚪",
       callback: () => 
         new Promise((resolve) => {
-          say(`${player.name} inspect the entrance door...`)
+          say(`${player.name} inspects the entrance door...`)
           setTimeout(() => {
             say(`No way, the door is blocked. Find another exit !`)
             resolve()
@@ -554,12 +554,12 @@ const game = () => {
 
   const initLookUnderDesk = world.createAction(
     {
-      text: "Look under captain's desk  👨‍✈️",
+      text: "Look under the captain's desk  👨‍✈️",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look under the captain's desk...`)
+          say(`${player.name} looks under the captain's desk...`)
           setTimeout(() => {
-            say(`${player.name} has found a trunk, closed by a code !`)
+            say(`${player.name} finds a trunk, closed by a code !`)
             player.doDiscover('trunkr1')
             resolve()
           }, 3000)
@@ -574,9 +574,9 @@ const game = () => {
       text: "Look around the room  ⛵",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look around the room...`)
+          say(`${player.name} looks around the room...`)
           setTimeout(() => {
-            say(`${player.name} has found a service door, locked by a code !`)
+            say(`${player.name} finds a service door, locked by a code !`)
             room2.userHaveFoundDoor = true
             resolve()
           }, 3000)
@@ -588,12 +588,12 @@ const game = () => {
   /******** ROOM 3 **********/
   world.createAction(
     {
-      text: "Look at the end of the room  ⛵",
+      text: "Look at the back of the room  ⛵",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look at the end of the room...`)
+          say(`${player.name} looks at the back of the room...`)
           setTimeout(() => {
-            say(`${player.name} has found a door, locked by a code !`)
+            say(`${player.name} finds a door, locked by a code !`)
             room3.userHaveFoundDoor = true
             resolve()
           }, 3000)
@@ -607,7 +607,7 @@ const game = () => {
       text: "Look at the bar  🥃",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look at the bar...`)
+          say(`${player.name} looks at the bar...`)
           setTimeout(() => {
             say(`${player.name} has found the register, it's locked by a code !`)
             player.doDiscover('registerr3')
@@ -624,7 +624,7 @@ const game = () => {
       text: "Look around the Lady Room  ⛵",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look around the room...`)
+          say(`${player.name} looks around the room...`)
           setTimeout(() => {
             say(`${player.name} has found an exit door locked by a code !`)
             room4.userHaveFoundDoor = true
@@ -640,7 +640,7 @@ const game = () => {
       text: "Look at the big luxury trunk  💴",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} look carefully a the trunk...`)
+          say(`${player.name} lookcarefully at the trunk...`)
           setTimeout(() => {
             say(`The trunk is closed by three locks : one old, one big, on tiny.`)
             resolve()
@@ -651,7 +651,7 @@ const game = () => {
   )
 
 /********************************************** CREATE TIMER ***************************************/
-  const timer = new Timer()
+  const timer = world.createTimer()
 
 /********************************************** GAME BEGIN ***************************************/
   // room2.updateColor()
