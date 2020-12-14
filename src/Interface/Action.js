@@ -129,8 +129,9 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
     })
     if (cluesUsed.includes("c2-" + currentRoom.resolveAction.identifier)) {
       clueButtonElement2.style.opacity = "100%"
+    } else {
+      clueButtonElement2.style.opacity = "50%"
     }
-    clueButtonElement2.style.opacity = "50%"
     resolveCodeElement.append(clueButtonElement2)
 
     const clueTextElement = document.createElement("div")
@@ -228,8 +229,9 @@ export const addResolveCodeAction = (action, world) => {
   })
   if (cluesUsed.includes("c1-" + action.item.id)) {
     clueButtonElement1.style.opacity = "100%"
+  } else {
+    clueButtonElement1.style.opacity = "50%"
   }
-  clueButtonElement1.style.opacity = "50%"
   resolveCodeElement.append(clueButtonElement1)
 
   const clueButtonElement2 = document.createElement('button')
@@ -249,8 +251,9 @@ export const addResolveCodeAction = (action, world) => {
   })
   if (cluesUsed.includes("c2-" + action.item.id)) {
     clueButtonElement2.style.opacity = "100%"
+  } else {
+    clueButtonElement2.style.opacity = "50%"
   }
-  clueButtonElement2.style.opacity = "50%"
   resolveCodeElement.append(clueButtonElement2)
 
   const clueTextElement = document.createElement("div")
