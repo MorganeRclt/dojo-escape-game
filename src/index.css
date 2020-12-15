@@ -116,7 +116,7 @@ h1 {
 .actions {
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem 0rem 2rem;
+  padding: 1rem 0.5rem 0rem 0.5rem;
 }
 
 .actions-resolve {
@@ -128,7 +128,7 @@ h1 {
 }
 
 .action-button {
-  padding: 0.35rem 1.5rem;
+  padding: 0.35rem 2rem;
   border: 0.5px solid white;
   margin: 0 0.3rem 0.3rem 0;
   border-radius: 0.12rem;
@@ -325,7 +325,7 @@ h1 {
   width: 23rem;
   height: 23rem;
   text-align: center;
-  border:none;
+  border: none;
 }
 
 .item-zoom#mapr1-zoom {
