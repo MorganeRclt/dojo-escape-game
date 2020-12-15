@@ -58,7 +58,7 @@ export const onSelectItem = (item, world) => {
 }
 
 export const zoomOn = (item) => {
-    const zoomElement = document.createElement('div')
+    const zoomElement = document.createElement('button')
     Object.assign(zoomElement, {
         classList: ['item-zoom'],
         id: item.id + '-zoom'

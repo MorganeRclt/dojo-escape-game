@@ -128,7 +128,7 @@ h1 {
 }
 
 .action-button {
-  padding: 0.35rem 1.2rem;
+  padding: 0.35rem 1.5rem;
   border: 0.5px solid white;
   margin: 0 0.3rem 0.3rem 0;
   border-radius: 0.12rem;
@@ -322,16 +322,15 @@ h1 {
 }
 
 .item-zoom {
-  width: 15rem;
-  height: 15rem;
+  width: 23rem;
+  height: 23rem;
   text-align: center;
+  border:none;
 }
 
 .item-zoom#mapr1-zoom {
   background: url('assets/zoom-map.png');
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 .item-zoom#key1r2-zoom {
   background: url("assets/oldkeyr2.png");
@@ -348,6 +347,7 @@ h1 {
 .item-zoom#rudderr1-zoom {
   background: url("assets/rudderr1.png");
   background-size: contain;
+  background-position: center;
 }
 .item-zoom#circler1-zoom {
   background: url("assets/circler1.png");

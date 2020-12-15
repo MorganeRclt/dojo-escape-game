@@ -155,7 +155,7 @@ export const addInspectAction = (action, world) => {
     classList: ['action-button'],
     onclick: () => {
       clearZoom(world)
-      const zoomElement = document.createElement('div')
+      const zoomElement = document.createElement('button')
       Object.assign(zoomElement, {
           classList: ['item-zoom'],
           id: action.idInspect + '-zoom'
