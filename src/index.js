@@ -469,7 +469,7 @@ const game = () => {
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor && room3.userHaveFoundDoor
     },
     "1514",
-    "Use only the morse code on the wall",
+    "Use only the morse code on the wall, find first a code with 5 letters",
     "The final code is composed by 4 digits"
   )
 
