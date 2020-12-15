@@ -116,7 +116,7 @@ h1 {
 .actions {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0.5rem 0rem 0.5rem;
+  padding: 1rem 0.4rem 0rem 0.4rem;
 }
 
 .actions-resolve {
