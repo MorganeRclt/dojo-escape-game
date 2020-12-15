@@ -689,7 +689,7 @@ const setName = () => {
 
 const beginning = () => {
   document.getElementById("start-game").addEventListener("click", beginGame)
-  beginGame()
+  // beginGame()
 }
 
 const beginGame = () => {

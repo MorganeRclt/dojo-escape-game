@@ -129,13 +129,14 @@ h1 {
 
 .action-button {
   padding: 0.35rem 1.2rem;
-  border: 0.1rem solid white;
+  border: 0.5px solid white;
   margin: 0 0.3rem 0.3rem 0;
   border-radius: 0.12rem;
   box-sizing: border-box;
   text-decoration: none;
   font-family: sans-serif;
   font-weight: 300;
+  font-size: 0.8rem;
   color: white;
   text-align: center;
   transition: all 0.3s;
@@ -147,21 +148,24 @@ h1 {
   background-color: white;
 }
 .action-button + .action-button {
-  margin-top: 0.7rem;
+  margin-top: 0.5rem;
 }
 
 .code-label {
   margin: 1rem 0.3rem 0.3rem 0;
   font-family: sans-serif;
   font-weight: 300;
+  font-size: 0.8rem;
 }
 
 .code-input {
   margin: 0 0.3rem 0.3rem 0;
-  width: 15rem;
-  padding: 0.5rem;
+  width: 8rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 2.5rem;
   background: none;
-  border: 0.1rem solid white;
+  border: 0.5px solid white;
   color:white;
 }
 
@@ -172,8 +176,10 @@ h1 {
 .action-resolve-button,
 #namePlayer {
   background: none;
-  border: 0.1rem solid white;
-  padding: 0.5rem;
+  border: 0.5px solid white;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 2.5rem;
   color: white;
   transition: all 0.3s;
 }
@@ -189,7 +195,7 @@ h1 {
   opacity: 0.5;
   color: white;
   font-size: 1rem;
-  border: 0.1rem solid white;
+  border: 0.5px solid white;
   border-radius: 50%;
   margin-left: 1rem;
   transition: all 0.3s;
@@ -316,8 +322,8 @@ h1 {
 }
 
 .item-zoom {
-  width: 30rem;
-  height: 30rem;
+  width: 15rem;
+  height: 15rem;
   text-align: center;
 }
 
@@ -430,11 +436,11 @@ h1 {
 .story {
   margin: 2rem 4rem 2rem 4rem;
   color: white;
-  font-size: 1rem;
+  font-size: 0.7rem;
 }
 
 .arrows {
-  font-size:2rem;
+  font-size:1rem;
   color: white;
 }
 
@@ -465,13 +471,13 @@ ul {
 }
 
 li {
-  font-size: 1rem;
+  font-size: 0.7rem;
 }
 
 .exit-button,
 .start-game {
   background: none;
-  border: 0.1rem solid white;
+  border: 0.5px solid white;
   padding: 0.5rem;
   margin-top: 0.5rem;
   color: white;
@@ -519,6 +525,10 @@ li {
 
 .stat {
   margin-bottom: 4rem;
+}
+
+*:focus {
+  outline: 0 !important;
 }
 
 /* mobile overrides */
