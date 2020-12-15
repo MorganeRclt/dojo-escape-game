@@ -654,9 +654,6 @@ const game = () => {
   const timer = world.createTimer()
 
 /********************************************** GAME BEGIN ***************************************/
-  room2.updateColor()
-  room3.updateColor()
-  // room4.updateColor()
   setTimeout(() => {
     say(`Good luck ${player.name} !`),
     addMoveForwardAction(
@@ -689,7 +686,6 @@ const setName = () => {
 
 const beginning = () => {
   document.getElementById("start-game").addEventListener("click", beginGame)
-  // beginGame()
 }
 
 const beginGame = () => {
