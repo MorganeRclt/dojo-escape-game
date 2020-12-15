@@ -7,8 +7,8 @@ export class Timer {
         // this.beginDate = new Date(beginDateString)
         // const endDateString = 'January 1 2020 00:30:00 GMT+0200';
         // this.endDate = new Date(endDateString)
-        this.nbMin = 45
-        this.timerString = "45 minutes left"
+        this.nbMin = 35
+        this.timerString = "35 minutes left"
         this.world = world
     }
 

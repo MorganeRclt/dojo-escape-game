@@ -96,8 +96,10 @@ h1 {
   margin-top: 2rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  text-align: left;
+  text-align: center;
+  align-items: center;
   flex-basis: 30%;
+  justify-content: center;
   /* flex-grow: 1; */
   /* flex: 1 0 20%; */
 }
@@ -145,14 +147,13 @@ h1 {
   background-color: white;
 }
 .action-button + .action-button {
-  margin-top: 1rem;
+  margin-top: 0.7rem;
 }
 
 .code-label {
   margin: 1rem 0.3rem 0.3rem 0;
   font-family: sans-serif;
   font-weight: 300;
-  font-size: 1rem;
 }
 
 .code-input {
@@ -213,8 +214,8 @@ h1 {
   text-decoration: none;
   text-align: center;
   transition: all 0.3s;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   box-shadow: 0px 0px 3px var(--color-shadow);
 }
 
@@ -224,97 +225,107 @@ h1 {
 
 .item-button#mapr1 {
   background: url("assets/icon-map-70.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#key1r2 {
   background: url("assets/icon-oldkey-100.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#key2r3 {
   background: url("assets/icon-bigkey-100.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#key3r4 {
   background: url("assets/icon-tinykey-100.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#symbr1 {
   background: url("assets/symbr1.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle1r3 {
   background: url("assets/icon-bottle1r3.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle2r3 {
   background: url("assets/icon-bottle2r3.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle3r3 {
   background: url("assets/icon-bottle3r3.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#bottle4r3 {
   background: url("assets/icon-bottle4r3.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#scorer4 {
   background: url("assets/icon-scorer4.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#pianosolr4 {
   background: url("assets/icon-pianosolr4.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 .item-button#treasurer4 {
   background: url("assets/icon-treasurer4.png");
-  background-size: 80px 80px;
+  background-size: 60px 60px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bubble);
 }
 
+.zoom-inventory {
+  text-align: center;
+  align-items: center;
+  flex-basis: 100%;
+  justify-content: center;
+}
+
 .item-zoom {
-  width: 500px;
-  height: 500px;
+  width: 30rem;
+  height: 30rem;
+  text-align: center;
 }
 
 .item-zoom#mapr1-zoom {
   background: url('assets/zoom-map.png');
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .item-zoom#key1r2-zoom {
   background: url("assets/oldkeyr2.png");
@@ -354,7 +365,8 @@ h1 {
 }
 .item-zoom#containerr2-zoom {
   background: url("assets/containerr2.png");
-  background-size: contain; 
+  background-size: contain;
+  background-position: center;
 }
 .item-zoom#bottle1r3-zoom {
   background: url("assets/bottle1r3.png");
@@ -403,7 +415,7 @@ h1 {
 
 #map {
   /* border: 1px solid white; */
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 .title {
@@ -411,8 +423,8 @@ h1 {
 }
 
 .speak {
-  font-size: 1.5rem;
-  margin: 1rem;
+  font-size: 1rem;
+  margin: 0.7rem;
 }
 
 .story {
@@ -422,7 +434,7 @@ h1 {
 }
 
 .arrows {
-  font-size:3rem;
+  font-size:2rem;
   color: white;
 }
 
@@ -434,8 +446,8 @@ h1 {
 }
 
 .timer {
-  font-size: 1.5rem;
-  margin-top: 2rem;
+  font-size: 1rem;
+  margin-top: 1rem;
   font-family: sans-serif;
 }
 

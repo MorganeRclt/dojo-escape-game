@@ -430,7 +430,7 @@ export const endGame = (endingCode, world) => {
         innerHTML: "Congratulation, you escaped the boat and you found the treasure ! What an adventure..."
       })
     }
-    document.getElementById("exit-time").innerHTML = "You escaped in " + (45 - world.timer.nbMin) + " minutes"
+    document.getElementById("exit-time").innerHTML = "You escaped in " + (35 - world.timer.nbMin) + " minutes"
     if (cluesUsed.length === 0) {
       document.getElementById("exit-nb-clues").innerHTML = "You didn't use any clue, well done !"
     } else if (cluesUsed.length === 1) {

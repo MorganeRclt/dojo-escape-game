@@ -3,7 +3,7 @@ import { Player } from '../Game/Player'
 import { World } from '../Game/World'
 
 const canvasId = 'map'
-const scaling = 100
+const scaling = 50
 const playerSize = 1 / 10
 
 const mapCanvas = document.getElementById(canvasId)
