@@ -277,7 +277,7 @@ const game = () => {
         new Promise((resolve) => {
           say(`${player.name} tries the keys...`)
           setTimeout(() => {
-            say(`${player.name} finds the Lady treasure !!`)
+            say(`${player.name} finds President Coolidge's treasure !!`)
             inventory = world.updateInventory()
             resolve()
           }, 3000)
@@ -640,7 +640,7 @@ const game = () => {
       text: "Look at the big luxury trunk  &#128180;",
       callback: () =>
         new Promise((resolve) => {
-          say(`${player.name} lookcarefully at the trunk...`)
+          say(`${player.name} looks carefully at the trunk...`)
           setTimeout(() => {
             say(`The trunk is closed by three locks : one old, one big, on tiny.`)
             resolve()
