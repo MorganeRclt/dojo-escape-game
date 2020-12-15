@@ -152,7 +152,7 @@ h1 {
   margin: 1rem 0.3rem 0.3rem 0;
   font-family: sans-serif;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .code-input {
@@ -185,12 +185,15 @@ h1 {
 
 .clue-button {
   background: none;
-  opacity: 50%;
+  opacity: 0.5;
   color: white;
+  font-size: 1rem;
   border: 0.1rem solid white;
   border-radius: 50%;
   margin-left: 1rem;
   transition: all 0.3s;
+  height: 2rem;
+  width: 2rem;
 }
 
 .clue-button:hover {
@@ -398,23 +401,6 @@ h1 {
   background-size: contain;
 }
 
-.item-button-used {
-  padding: 0.35rem 1.2rem;
-  border: 0.1rem solid grey;
-  margin: 0 0.3rem 0.3rem 0;
-  height: 4em;
-  width: 4em;
-  border-radius: 0.12rem;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: sans-serif;
-  font-weight: 300;
-  color: white;
-  text-align: center;
-  transition: all 0.3s;
-  background-color: grey;
-}
-
 #map {
   /* border: 1px solid white; */
   margin: 1rem;
@@ -432,11 +418,11 @@ h1 {
 .story {
   margin: 2rem 4rem 2rem 4rem;
   color: white;
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 .arrows {
-  font-size:50px;
+  font-size:3rem;
   color: white;
 }
 
@@ -448,14 +434,14 @@ h1 {
 }
 
 .timer {
-  font-size: 20px;
+  font-size: 1.5rem;
   margin-top: 2rem;
   font-family: sans-serif;
 }
 
 .indication,
 .clue-text {
-  font-size: 20px;
+  font-size: 1rem;
   margin-top: 0.5rem;
 }
 
@@ -463,10 +449,11 @@ ul {
   list-style-type: none;
   margin-left: 2rem;
   margin-right: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 li {
-  font-size: 18px
+  font-size: 1rem;
 }
 
 .exit-button,
@@ -474,7 +461,7 @@ li {
   background: none;
   border: 0.1rem solid white;
   padding: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   color: white;
   transition: all 0.3s;
 }
@@ -486,13 +473,36 @@ li {
 }
 
 .exit-message {
-  font-size: 25px;
-  margin: 6rem;
+  font-size: 2rem;
+  margin: 6rem 6rem 4rem 6rem;
+}
+
+.exit-image {
+  height: 200px;
+}
+
+#exit-image-0 {
+  background: url("assets/exitimage0.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#exit-image-1 {
+  background: url("assets/exitimage1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#exit-image-2 {
+  background: url("assets/exitimage2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .exit-time,
 .exit-nb-clues {
-  font-size: 22px;
+  font-size: 1.5rem;
 }
 
 .stat {

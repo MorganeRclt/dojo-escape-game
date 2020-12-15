@@ -132,7 +132,7 @@ const game = () => {
   /******** ROOM 1 **********/
   const getMapr1 = world.createGetItemsAction(
     {
-      text: "Get items on the captain's desk  👨‍✈️",
+      text: "Get items on the captain's desk  &#128110;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} searches on the captain's desk...`)
@@ -149,7 +149,7 @@ const game = () => {
 
   const getSymbr1 = world.createGetItemsAction(
     {
-      text: "Get items on the wall ▩",
+      text: "Get items on the wall &#11036;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks at the wall...`)
@@ -168,7 +168,7 @@ const game = () => {
 
   world.createGetItemsAction(
     {
-      text: "Look under the sofa  🛋",
+      text: "Look under the sofa  &#128715;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks under the sofa...`)
@@ -185,7 +185,7 @@ const game = () => {
 
   world.createGetItemsAction(
     {
-      text: "Look under the counter 🍺",
+      text: "Look under the counter &#127866;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks under the counter...`)
@@ -202,7 +202,7 @@ const game = () => {
 
   world.createGetItemsAction(
     {
-      text: "Look on the table  🍻",
+      text: "Look on the table  &#127867;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks under the table...`)
@@ -219,7 +219,7 @@ const game = () => {
 
   world.createGetItemsAction(
     {
-      text: "Look at the bar shelf  🍾",
+      text: "Look at the bar shelf  &#127870;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks into the bar shelf...`)
@@ -237,7 +237,7 @@ const game = () => {
   /******** ROOM 4 **********/
   world.createGetItemsAction(
     {
-      text: "Look at the table  🍽",
+      text: "Look at the table  &#127869;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks at the table...`)
@@ -254,7 +254,7 @@ const game = () => {
 
   world.createGetItemsAction(
     {
-      text: "Look at the sofa  🛋",
+      text: "Look at the sofa  &#128715;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks at the sofa...`)
@@ -272,7 +272,7 @@ const game = () => {
   
   world.createGetItemsAction(
     {
-      text: "Use old key, tiny key and big key to open the trunk  🔑",
+      text: "Use old key, tiny key and big key to open the trunk  &#128273;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} tries the keys...`)
@@ -293,7 +293,7 @@ const game = () => {
   /******** ROOM 1 **********/
   const inspectActionRubber = world.createInspectAction(
     {
-      text: "Inspect the rudder  ⚓",
+      text: "Inspect the rudder  &#128674;",
       isEnabled: () => player.currentRoom === room1 && !inventory.hasItem(key1r2.id)
     },
     "rudderr1"
@@ -301,7 +301,7 @@ const game = () => {
   1234
   world.createInspectAction(
     {
-      text: "Inspect the captain's desk  👨‍✈️",
+      text: "Inspect the captain's desk   &#128110;",
       isEnabled: () => player.currentRoom === room1 && inventory.hasItem(mapr1.id) && !inventory.hasItem(key1r2.id)
     },
     "circler1"
@@ -309,7 +309,7 @@ const game = () => {
 
   world.createInspectAction(
     {
-      text: "Inspect the lock of the trunk  🔏",
+      text: "Inspect the lock of the trunk  &#128271;",
       isEnabled: () => player.currentRoom === room1 && player.hasDiscovered('trunkr1') && !inventory.hasItem(key1r2.id)
     },
     "circlesolr1"
@@ -318,7 +318,7 @@ const game = () => {
   /******** ROOM 2 **********/
   world.createInspectAction(
     {
-      text: "Inspect the wall  ▩",
+      text: "Inspect the wall  &#11036;",
       isEnabled: () => player.currentRoom === room2 && room3.color === backgroundColor
     },
     "symbr2"
@@ -326,7 +326,7 @@ const game = () => {
 
   world.createInspectAction(
     {
-      text: "Inspect the door's lock  🔏",
+      text: "Inspect the door's lock   &#128271;",
       isEnabled: () => player.currentRoom === room2 && room3.color === backgroundColor && room2.userHaveFoundDoor
     },
     "symbsolr2"
@@ -334,7 +334,7 @@ const game = () => {
 
   world.createInspectAction(
     {
-      text: "Inspect room's inventory  📋",
+      text: "Inspect room's inventory  &#128220;",
       isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key2r3.id)
     },
     "containerr2"
@@ -343,7 +343,7 @@ const game = () => {
   /******** ROOM 3 **********/
   world.createInspectAction(
     {
-      text: "Inspect the wall to your left  ▩",
+      text: "Inspect the wall to your left  &#11036;",
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse1r3"
@@ -351,7 +351,7 @@ const game = () => {
 
   world.createInspectAction(
     {
-      text: "Inspect the wall in front of you  ▩",
+      text: "Inspect the wall in front of you  &#11036;",
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse2r3"
@@ -359,7 +359,7 @@ const game = () => {
 
   world.createInspectAction(
     {
-      text: "Inspect the wall to your right  ▩",
+      text: "Inspect the wall to your right  &#11036;",
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor
     },
     "morse3r3"
@@ -367,7 +367,7 @@ const game = () => {
 
   world.createInspectAction(
     {
-      text: "Inspect the piano  🎹",
+      text: "Inspect the piano  &#127929;",
       isEnabled: () => player.currentRoom === room3 && !player.exit
     },
     "pianor3"
@@ -391,13 +391,13 @@ const game = () => {
       isEnabled: () => player.currentRoom === room1 && room2.color === backgroundColor && room1.userHaveFoundDoor
     },
    "SESENW",
-   "Use the navigation map",
+   "Use only the navigation map",
    "This code is composed by letters S, N, E, W"
   )
 
   world.createResolveCodeAction(
     {
-      text: "Enter a code to unlock the trunk  🔒",
+      text: "Enter a code to unlock the trunk  &#128274;",
       callback: () =>
         new Promise((resolve) => {
           setTimeout(() => {
@@ -436,7 +436,7 @@ const game = () => {
 
   world.createResolveCodeAction(
     {
-      text: "Look in container number...  📦",
+      text: "Look in container number...  &#128230;",
       callback: () =>
         new Promise((resolve) => {
           setTimeout(() => {
@@ -447,7 +447,7 @@ const game = () => {
       isEnabled: () => player.currentRoom === room2 && !inventory.hasItem(key2r3.id)
     },
     "C6",
-    "Use the container's inventory",
+    "Use only the container's inventory",
     "All symbols are repeated 4 times, except one",
     "containerr2",
     "container",
@@ -462,20 +462,20 @@ const game = () => {
         new Promise((resolve) => {
           say(`${player.name} enters the code...`)
           setTimeout(() => {
-            say(`${player.name} code !`)
+            console.log("callback init")
             resolve()
           }, 3000)
         }),
       isEnabled: () => player.currentRoom === room3 && room4.color === backgroundColor && room3.userHaveFoundDoor
     },
     "1514",
-    "Use the morse code on the wall",
+    "Use only the morse code on the wall",
     "The final code is composed by 4 digits"
   )
 
   world.createResolveCodeAction(
     {
-      text: "Enter a code to unlock the register  💰",
+      text: "Enter a code to unlock the register  &#128176;",
       callback: () =>
       new Promise((resolve) => {
         setTimeout(() => {
@@ -486,7 +486,7 @@ const game = () => {
       isEnabled: () => player.currentRoom === room3 && player.hasDiscovered('registerr3') && !inventory.hasItem(key3r4.id)
     },
     "1942",
-    "Use the bottles",
+    "Use the four bottles",
     "Look at the level of the bottles",
     "registerr3",
     "register",
@@ -523,7 +523,7 @@ const game = () => {
   /******** ROOM 1 **********/
   const initLookGround = world.createAction(
     {
-      text: "Look on the ground  ⛵",
+      text: "Look on the ground  &#9973;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks on the ground...`)
@@ -554,7 +554,7 @@ const game = () => {
 
   const initLookUnderDesk = world.createAction(
     {
-      text: "Look under the captain's desk  👨‍✈️",
+      text: "Look under the captain's desk  &#128110;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks under the captain's desk...`)
@@ -571,7 +571,7 @@ const game = () => {
   /******** ROOM 2 **********/
   world.createAction(
     {
-      text: "Look around the room  ⛵",
+      text: "Look around the room  &#9973;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks around the room...`)
@@ -588,7 +588,7 @@ const game = () => {
   /******** ROOM 3 **********/
   world.createAction(
     {
-      text: "Look at the back of the room  ⛵",
+      text: "Look at the back of the room  &#9973;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks at the back of the room...`)
@@ -604,7 +604,7 @@ const game = () => {
 
   world.createAction(
     {
-      text: "Look at the bar  🥃",
+      text: "Look at the bar  &#129347;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks at the bar...`)
@@ -621,7 +621,7 @@ const game = () => {
   /******** ROOM 4 **********/
   world.createAction(
     {
-      text: "Look around the Lady Room  ⛵",
+      text: "Look around the Lady Room  &#9973;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} looks around the room...`)
@@ -637,7 +637,7 @@ const game = () => {
 
   world.createAction(
     {
-      text: "Look at the big luxury trunk  💴",
+      text: "Look at the big luxury trunk  &#128180;",
       callback: () =>
         new Promise((resolve) => {
           say(`${player.name} lookcarefully at the trunk...`)
@@ -689,7 +689,7 @@ const setName = () => {
 
 const beginning = () => {
   document.getElementById("start-game").addEventListener("click", beginGame)
-  //beginGame()
+  // beginGame()
 }
 
 const beginGame = () => {

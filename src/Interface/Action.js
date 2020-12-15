@@ -11,6 +11,8 @@ const zoomInventoryElement = document.getElementById(zoomInventoryId)
 const exitId = "exit"
 const exitElement = document.getElementById(exitId)
 const timerId = "timer"
+const exitMessageId = "exit-message"
+const exitMessageElement = document.getElementById(exitMessageId)
 const timerElement = document.getElementById(timerId)
 const arrowForwardStyle = document.getElementById("arrow-forward").style
 const arrowBackStyle = document.getElementById("arrow-back").style
@@ -77,7 +79,8 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
               addExit(world)
               world.player.exit = true
             }
-            document.getElementById('resolve-room').innerHTML = ''
+            clearActions()
+            addEnabledActions(world)
           }, 2000)
         } else {
           setTimeout(() => {
@@ -106,9 +109,9 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
       innerHTML: "?"
     })
     if (cluesUsed.includes("c1-" + currentRoom.resolveAction.identifier)) {
-      clueButtonElement1.style.opacity = "100%"
+      clueButtonElement1.style.opacity = "1"
     } else {
-      clueButtonElement1.style.opacity = "50%"
+      clueButtonElement1.style.opacity = "0.5"
     }
     resolveCodeElement.append(clueButtonElement1)
 
@@ -128,9 +131,9 @@ export const addResolveRoomCodeAction = (currentRoom, world) => {
       innerHTML: "?"
     })
     if (cluesUsed.includes("c2-" + currentRoom.resolveAction.identifier)) {
-      clueButtonElement2.style.opacity = "100%"
+      clueButtonElement2.style.opacity = "1"
     } else {
-      clueButtonElement2.style.opacity = "50%"
+      clueButtonElement2.style.opacity = "0.5"
     }
     resolveCodeElement.append(clueButtonElement2)
 
@@ -228,9 +231,9 @@ export const addResolveCodeAction = (action, world) => {
     innerHTML: "?"
   })
   if (cluesUsed.includes("c1-" + action.item.id)) {
-    clueButtonElement1.style.opacity = "100%"
+    clueButtonElement1.style.opacity = "1"
   } else {
-    clueButtonElement1.style.opacity = "50%"
+    clueButtonElement1.style.opacity = "0.5"
   }
   resolveCodeElement.append(clueButtonElement1)
 
@@ -250,9 +253,9 @@ export const addResolveCodeAction = (action, world) => {
     innerHTML: "?"
   })
   if (cluesUsed.includes("c2-" + action.item.id)) {
-    clueButtonElement2.style.opacity = "100%"
+    clueButtonElement2.style.opacity = "1"
   } else {
-    clueButtonElement2.style.opacity = "50%"
+    clueButtonElement2.style.opacity = "0.5"
   }
   resolveCodeElement.append(clueButtonElement2)
 
@@ -274,7 +277,7 @@ export const selectClue = (actionId, clue, clueNb) => {
   if (clueNb === 1) {
     clueButtonOtherElement = document.getElementById("clue2-" + actionId)
   }
-  clueButtonElement.style.opacity = '100%'
+  clueButtonElement.style.opacity = '1'
   if (clueTextElement.innerHTML === "") {
     clueTextElement.innerHTML = clue
     clueButtonElement.style.background = "white"
@@ -331,6 +334,7 @@ export const updateTimer = (timer) => {
  * @param {World} world
  */
 export const addEnabledActions = (world) => {
+  console.log("Add enabled actions")
   world.actions.forEach((action) => action.isEnabled() && addAction(action))
   world.actionsInspect.forEach((action) => action.isEnabled() && addInspectAction(action, world))
   world.actionsResolve.forEach((action) => action.isEnabled() && addResolveCodeAction(action, world))
@@ -363,7 +367,7 @@ export const addExit = (world) => {
     const exitText = document.createElement("p")
     Object.assign(exitText, {
       classList: ["indication"],
-      innerHTML: "! You can't go back to the boat after escaping !"
+      innerHTML: "! You can't go back to the boat after escaping !<br> If you still have time, you can look for the treasure."
     })
     exitElement.append(exitText)
   }
@@ -406,15 +410,27 @@ export const clearResolveActions = () => {
 export const endGame = (endingCode, world) => {
   document.getElementById("game").style.display = "none"
   document.getElementById("end-game").style.display = "block"
+  const exitMessage = document.createElement("div")
+  const exitImage = document.createElement("div")
+  Object.assign(exitImage, {
+    classList: ["exit-image"],
+    id: "exit-image-" + endingCode
+  })
   if (endingCode === 0) {
-    document.getElementById("exit-message").innerHTML = "Time is over, you run out of oxygen !"
+    Object.assign(exitMessage, {
+      innerHTML: "Time is over, you run out of oxygen !"
+    })
   } else {
     if (endingCode === 1) {
-      document.getElementById("exit-message").innerHTML = "Congratulation, you escaped the boat ! But the treasure will last forever in the wreck of SS president Coolidge..."
+      Object.assign(exitMessage, {
+        innerHTML: "Congratulation, you escaped the boat ! But the treasure will last forever in the wreck of SS president Coolidge..."
+      })
     } else {
-      document.getElementById("exit-message").innerHTML = "Congratulation, you escaped the boat and you found the treasure ! What an adventure..."
+      Object.assign(exitMessage, {
+        innerHTML: "Congratulation, you escaped the boat and you found the treasure ! What an adventure..."
+      })
     }
-    document.getElementById("exit-time").innerHTML = "You escaped in " + (40 - world.timer.nbMin) + " minutes"
+    document.getElementById("exit-time").innerHTML = "You escaped in " + (45 - world.timer.nbMin) + " minutes"
     if (cluesUsed.length === 0) {
       document.getElementById("exit-nb-clues").innerHTML = "You didn't use any clue, well done !"
     } else if (cluesUsed.length === 1) {
@@ -422,5 +438,7 @@ export const endGame = (endingCode, world) => {
     } else {
       document.getElementById("exit-nb-clues").innerHTML = "You used " + cluesUsed.length + " clues."
     }
-  } 
+  }
+  exitMessageElement.append(exitMessage) 
+  exitMessageElement.append(exitImage)
 }

@@ -77,7 +77,12 @@ export class ResolveCodeAction extends Action {
         }
       })
     } else {
-      super({...actionConfig})
+      super({
+        ...actionConfig,
+        callback: () => {
+          return actionConfig.callback()
+        }
+      })
     }
     this.code = code
     this.item = item
